@@ -52,10 +52,19 @@
             var strContent = "";
 
             // create dynamic content from JSON
-            for( var carLen = 0; carLen < story.cars.length; carLen++ ){
+            /*for( var carLen = 0; carLen < story.cars.length; carLen++ ){
                 strContent += "<h1 class='year'>" + story.cars[carLen].year + "</h1>" ;
                 strContent += "<h2 class='make'>" + story.cars[carLen].make + "</h2>" ;
                 strContent += "<h2 class='model'>" + story.cars[carLen].model + "</h2>" ;
+
+                strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
+                strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
+            }*/
+
+            for( var carLen = 0; carLen < story.cars.length; carLen++ ){
+                strContent += "<h1 class='year'>" + story.cars[carLen].year + " "
+                           + story.cars[carLen].make + " "
+                           +  story.cars[carLen].model + "</h1>" ;
 
                 strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
                 strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
