@@ -13,3 +13,8 @@ I found this solution on: http://stackoverflow.com/questions/22212538/how-to-sto
 html {
     overflow-y: scroll;
 }
+
+body {
+    background: darkgray;
+}
+
