@@ -1,0 +1,87 @@
+{
+  "cars": [
+    {
+      "year": "1998-2000",
+      "make": "Subaru",
+      "model": "Impreza WRX STI",
+      "paragraphs": [
+        [
+          "The Subaru Impreza WRX STi is the sportiest version of Impreza ever created, being entirely based on the car produced by the compaby for the FIA World Rally Championship."
+        ],
+        [
+          "Thanks to a remarkable evolution, the Subaru Technica International started the mass production of the WRX STi and launched it in Japan. However, the market coverage was quickly expanded to Europe and Australia, although these two markets received the car in 2001 and 1999 respectively. It's important to note that in Europe, Subaru had to modify the chassis due to the local regulations. However, the WRX STi brought only positive feedback so Subaru launched the top Impreza in the United States in 2003."
+        ]
+      ]
+
+    },
+    {
+      "year": "2001-2003",
+      "make": "Subaru",
+      "model": "Impreza WRX STI",
+      "paragraphs": [
+        [
+          "The 2000 model of WRX STi marked the introduction of the S-series which were even more powerful than the base versions of STi."
+        ],
+        [
+          "For example, they had engines which could develop 280 horsepower and reach a higher speed than the main cars. The S201 for instance, had a bigger airsplitter while the whole suspension system was made of upgraded versions of the parts already installed on the STi models."
+        ]
+      ]
+
+    },
+    {
+      "year": "2003-2005 (First sold in the US)",
+      "make": "Subaru",
+      "model": "Impreza WRX STI",
+      "paragraphs": [
+        [
+          "Already an important presence on the market, the 2003 version of Subaru Impreza WRX STi is an improved edition of the previous releases which now comes with a couple of new features."
+        ],
+        [
+          "For example, the new model has an illuminated ignition key ring while the sedan has a pre-installed rear spoiler. The Japanese manufacturer introduced a new color, the Sonic Yellow, but only approximately 1,500 units were produced. All these models had 17 inches wheels belonging to Subaru."
+        ]
+      ]
+
+    },
+    {
+      "year": "2005-2007",
+      "make": "Subaru",
+      "model": "Impreza WRX STI",
+      "paragraphs": [
+        [
+          "Back in 2005, the Japanese company Subaru decided to upgrade the WRX once again, installing a couple of last generation features which were not available on the earlier versions."
+        ],
+        [
+          "Beside the redesigned headlights which are now larger than the previous ones, and the redesigned front intakes, the car has an enlarged hood scoop and projector beam fog lights. In addition, the interior of the new WRX has also been redesigned, the tachometer being completely moved on the center of the dashboard while the speedometer was placed on the right side."
+        ]
+      ]
+
+    },
+    {
+      "year": "2008-2014",
+      "make": "Subaru",
+      "model": "Impreza WRX STI",
+      "paragraphs": [
+        [
+          "Unveiled at the 2007 edition of the Tokyo Auto Show, the 2008 Subaru Impreza WRX STi is the latest edition of the high-performance family saloon launched during the '90s."
+        ],
+        [
+          "The new WRX STi comes as a five-door hatchback with the expected meaner and sportier looks to differentiate it from the normal Impreza. The car boasts 8-inch wider wheel arches and central air intake on the front bonnet for a more muscular look. The JDM version receives the 2.0-liter boxer engine with twin scroll turbocharger and develops 304 hp, while all the other versions are fitted with a 2.5-liter boxer coupled with a single scroll turbocharger for a rated power of 305 hp."
+        ]
+      ]
+
+    },
+    {
+      "year": "2015-Present (Split away from Impreza model line)",
+      "make": "Subaru",
+      "model": "WRX STI",
+      "paragraphs": [
+        [
+          "Subaru's iconic performance sedan model came back in 2014 at the North American International Auto Show, carrying the bold look of its standard WRX model, but adding more sportiness and power to the package."
+        ],
+        [
+          "New for the 2015 WRX STI, Active Torque Vectoring joins an arsenal of the model's proven handling technologies that includes Multi-Mode Driver Controlled Center Differential (DCCD) Symmetrical All-Wheel Drive, Multi-Mode Vehicle Dynamics Control, and a Brembo Performance Brake System with Super Sport ABS. Iconic blue body and gold rims are back in business, while its sporty personality can be found inside through new Alcantara seat surfaces with red accents and black leather inserts. flat-bottom steering wheel, new electroluminescent gauge cluster, new multi-information display and more."
+        ]
+      ]
+    }
+  ]
+}

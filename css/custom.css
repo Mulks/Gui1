@@ -1,0 +1,55 @@
+/* Cody Mulkern
+   File: css/custom.css
+	 Cody_Mulkern@student.uml.edu
+	 Computer Science Student UMass Lowell 91.461 GUI Programming I
+	 Date: 9/17/2015
+   Updated: 9/20/15 by Cody Mulkern
+
+*/
+
+/*This is to solve scroll bar appearing problem that shifts the navbar.
+I found this solution on: http://stackoverflow.com/questions/22212538/how-to-stop-bootstrap-3-1-1-from-shift-content-left-when-scroll-bar-appears*/
+
+html {
+    overflow-y: scroll;
+}
+
+
+/*Makes the links on primary panel-headers white so that it is readable.*/
+/*For current assignments*/
+a.panel-active-hw {
+    color: white;
+}
+
+/*Makes the links on success panel-headers black so that it is readable.*/
+/*For past assignments*/
+a.panel-past-hw {
+    color: black;
+}
+
+/*Makes the links on danger panel-headers black so that it is readable.*/
+/*For future assignments*/
+a.panel-future-hw {
+    color: black;
+}
+
+/*Makes the links on side bar blue when they are the current assignment.*/
+/*For current assignments*/
+a.blue-list-group-item {
+    background-color: #0044cc;
+    color: white;
+}
+
+/*Makes the links on side bar green when they are the past assignment.*/
+/*For past assignments*/
+a.green-list-group-item {
+    background-color: #D9EDD0;
+    color: black;
+}
+
+/*Makes the links on side bar red when they are the future assignment.*/
+/*For future assignments*/
+a.red-list-group-item {
+    background-color: #EED4D4;
+    color: black;
+}

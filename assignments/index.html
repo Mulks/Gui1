@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<!-- Cody Mulkern
+   File: assignments/index.html
+	 Cody_Mulkern@student.uml.edu
+	 Computer Science Student UMass Lowell 91.461 GUI Programming I
+	 Date: 9/1/2015
+   Updated: 9/8/15  by Cody Mulkern
+   Updated: 9/10/15 by Cody Mulkern
+   Updated: 9/17/15 by Cody Mulkern
+   Updated:10/02/15 by Cody Mulkern
+-->
+<html lang="en">
+
+
+<head>
+    <title>Cody Mulkern</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap source from http://getbootstrap.com/getting-started/-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- My own css overriding bootstrap's css-->
+    <link rel="stylesheet" type="text/css" href="/~cmulkern/css/custom.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+<!--Navbar for website navigation. -->
+<!-- +Home
+   +Assignments
+   +->Assignment1
+   +->Assignment2
+   +->Assignment3
+   +->All Assignments
+   +About
+ -->
+<!--Got example from  http://getbootstrap.com/examples/navbar/-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/~cmulkern">Mulky</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/~cmulkern">Home</a></li>
+                    <li class="active dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assignments<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/~cmulkern/assignments/assignment1.html">Assignment 1</a></li>
+                            <li><a href="/~cmulkern/assignments/assignment2.html">Assignment 2</a></li>
+                            <li><a href="/~cmulkern/assignments/assignment3.html">Assignment 3</a></li>
+                            <li><a href="http://mulks.github.io/Mulks/">Assignment 4</a></li>
+                            <li class="disabled"><a href="#">Assignment 5</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/~cmulkern/assignments/">All Assignments</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/~cmulkern/about/">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--End of Navbar -->
+
+<!--Div for Jumbotron shows some information -->
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Assignments</h1>
+        <p>91.461 GUI Programming</p>
+    </div>
+
+
+
+    <!--http://www.bootstrapzero.com/bootstrap-template/sidebar-->
+    <!--Side bar for Assignments based off of the example in link above.-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 " id="leftCol">
+
+                <!--Designed based of example on http://getbootstrap.com/components/#list-group-linked -->
+                <div class="list-group" id="sidebar">
+                    <a class="list-group-item green-list-group-item" href="#assignment1">Assignment 1</a>
+                    <a class="list-group-item green-list-group-item" href="#assignment2">Assignment 2</a>
+                    <a class="list-group-item green-list-group-item" href="#assignment3">Assignment 3</a>
+                    <a class="list-group-item green-list-group-item" href="#assignment4">Assignment 4</a>
+                    <a class="list-group-item blue-list-group-item" href="#assignment5">Assignment 5</a>
+                </div>
+
+
+            </div>
+            <!--Assignment Panel Begin Div -->
+            <!-- Panel Types: Success for completed assignments
+                            Primary for current assignments
+                            Danger for upcoming assignments
+          -->
+            <div class="col-md-8">
+                <div class="panel panel-success" id="assignment1">
+                    <div class="panel-heading"><a class="panel-past-hw" href="/~cmulkern/assignments/assignment1.html">Assignment 1</a></div>
+                    <div class="panel-body">
+                        <h3>Setting Up to Take This Course</h3>
+                        <ul>
+                            <li>Complete Your Course Registration</li>
+                            <li>Get a Web Server Up and Running on Your System</li>
+                            <li>Installing NetBeans / other IDE</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-success" id="assignment2">
+                    <div class="panel-heading"><a class="panel-past-hw" href="/~cmulkern/assignments/assignment2.html">Assignment 2</a></div>
+                    <div class="panel-body">
+                        <h3>Creating Your First Web Page</h3>
+                        <ul>
+                            <li>Verify that your file system is set up correctly</li>
+                            <li>Create an HTML5 web page in your public_html directory</li>
+                            <li>Set the protection of your HTML file to 644</li>
+                            <li>Make sure that your file contains the following documentation within
+                                <!-- ... -->tags at the top of the file</li>
+                            <li>Verify that you can view your web page over the Internet</li>
+                            <li>Test your page using the <a href="http://validator.w3.org/">W3C Markup Validation Service (http://validator.w3.org/)</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-success" id="assignment3">
+                    <div class="panel-heading"><a class="panel-past-hw" href="/~cmulkern/assignments/assignment3.html">Assignment 3</a></div>
+                    <div class="panel-body">
+                        <h3>Styling Your First Web Page With CSS</h3>
+                        <ul>
+                            <li>Read the first two chapters of the textbook</li>
+                            <li>To solidify your knowledge, watch some of the tutorials</li>
+                            <li>Redo the page that you created for Assignment No. 2 </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-success" id="assignment4">
+                    <div class="panel-heading"><a class="panel-past-hw" href="#">Assignment 4</a></div>
+                    <div class="panel-body">
+                        <h3>Posting a Page to GitHub</h3>
+                        <ul>
+                            <li>Watch YouTube video.</li>
+                            <li>Get gh-pages up on a new repository</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-primary" id="assignment5">
+                    <div class="panel-heading"><a class="panel-active-hw" href="#">Assignment 5</a></div>
+                    <div class="panel-body">Assignment 5</div>
+                </div>
+
+            </div>
+            <!--Assignment Panel End Div -->
+        </div>
+        <!--End Row-->
+    </div>
+</div>
+
+</body>
+<!--End of Body-->
+
+</html>

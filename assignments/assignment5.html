@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<!-- Cody Mulkern
+   File: assignments/assignment5.html
+	 Cody_Mulkern@student.uml.edu
+	 Computer Science Student UMass Lowell 91.461 GUI Programming I
+	 Date: 10/2/2015
+   Updated:10/03/15 by Cody Mulkern
+
+
+   JSON data was taken from :
+        http://www.autoevolution.com/subaru/wrx/
+        http://www.autoevolution.com/subaru/impreza-wrx-sti/
+
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 5</title>
+
+    <!--
+        load jQuery library from the Google Content Delivery Network (CDN)
+        see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
+        however, note that you obviously must be online for this to work
+        alternatively, you can download jQuery and store it locally from
+        http://jquery.com/download/
+    -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <!-- load the JSON file containing your text -->
+    <script type="text/javascript">
+        // this function will run after the body has been loaded
+        jQuery.ajax({
+            async: false,
+            dataType: "json",
+            url: "../JSON/STIModelYears.json" ,
+            success: function( data ) {
+                story = data ;
+            }
+        });
+
+        jQuery(document).ready( function() {
+            placeContent(  ) ;
+        } ) ;
+    </script>
+
+
+    <!-- script to place JSON text in the placeholder (div#content) on the page -->
+    <script type="text/javascript">
+        // N.B.  This version *does* apply the CSS.
+        function placeContent( ) {
+            var strContent = "";
+
+            // create dynamic content from JSON
+            for( var carLen = 0; carLen < story.cars.length; carLen++ ){
+                strContent += "<h1 class='year'>" + story.cars[carLen].year + "</h1>" ;
+                strContent += "<h2 class='make'>" + story.cars[carLen].make + "</h2>" ;
+                strContent += "<h2 class='model'>" + story.cars[carLen].model + "</h2>" ;
+
+                strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
+                strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
+            }
+
+            /*
+            // loop through all the paragraphs and sentences
+            for ( var para = 0 ; para < story.cars.about.paragraphs.length ; para++ ) {
+
+            }*/
+
+            // place dynamic content on page
+            // document.getElementById( "content" ).innerHTML = strContent ;
+            $("#content").html( strContent ) ;
+        }
+
+        //Was just used to get placing content working.
+        function placeContent2(  ){
+            var strContent = "";
+
+            // create dynamic content from JSON
+            strContent += "<h1 class='year'>" + "2004" + "</h1>" ;
+            strContent += "<h2 class='make'>" + "Subaru" + "</h2>" ;
+            strContent += "<h2 class='model'>" + "WRX STI" + "</h2>" ;
+            $("#content").html( strContent ) ;
+        }
+    </script>
+
+
+</head>
+<body>
+
+    <div id="content"></div>
+</body>
+</html>

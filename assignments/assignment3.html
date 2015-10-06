@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<!-- Cody Mulkern
+   File: assignments/assignment3.html
+	 Cody_Mulkern@student.uml.edu
+	 Computer Science Student UMass Lowell 91.461 GUI Programming I
+	 Date: 9/14/2015
+   Updated: 9/17/15 by Cody Mulkern
+   Updated:10/02/15 by Cody Mulkern
+-->
+<html lang="en">
+
+
+<head>
+    <title>Assignment 3</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap source from http://getbootstrap.com/getting-started/-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- My own css overriding bootstrap's css-->
+    <link rel="stylesheet" type="text/css" href="/~cmulkern/css/custom.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+
+</head>
+
+
+<!--Navbar for website navigation. -->
+<!-- +Home
+  +Assignments
+  +->Assignment1
+  +->Assignment2
+  +->Assignment3
+  +->All Assignments
+  +About
+-->
+<!--Got example from  http://getbootstrap.com/examples/navbar/-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/~cmulkern">Mulky</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/~cmulkern">Home</a></li>
+                    <li class="active dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assignments<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="/~cmulkern/assignments/assignment1.html">Assignment 1</a></li>
+                            <li><a href="/~cmulkern/assignments/assignment2.html">Assignment 2</a></li>
+                            <li><a href="/~cmulkern/assignments/assignment3.html">Assignment 3</a></li>
+                            <li><a href="http://mulks.github.io/Mulks/">Assignment 4</a></li>
+                            <li class="disabled"><a href="#">Assignment 5</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/~cmulkern/assignments/">All Assignments</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/~cmulkern/about/">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--Navbar for website navigation. -->
+
+<!--Div for Jumbotron shows some information -->
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Assignment 3</h1>
+        <p>91.461 GUI Programming</p>
+    </div>
+</div>
+<!-- Begin Body -->
+<div class="container">
+    <!--Assignment Panel Begin Div -->
+    <!-- Panel Types: Success for completed assignments
+                          Primary for current assignments
+                          Danger for upcoming assignments
+        -->
+    <div class="col-md-12">
+        <div class="panel panel-success" id="assignment3">
+            <div class="panel-heading">Assignment 3</div>
+            <div class="panel-body">
+                <h3>Styling Your First Web Page With CSS</h3>
+                <ul>
+                    <li>Read the first two chapters of the textbook</li>
+                    <li>To solidify your knowledge, watch some of the tutorials</li>
+                    <li>Redo the page that you created for Assignment No. 2 </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Assignment Panel End Div -->
+
+
+
+</html>
