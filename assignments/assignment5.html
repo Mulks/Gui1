@@ -38,7 +38,13 @@
 
     <!-- load the JSON file containing your text -->
     <script type="text/javascript">
-        // this function will run after the body has been loaded
+
+        // Got this fron Professor Heines example online. Can be seen in link below.
+        // view-source:https://teaching.cs.uml.edu/~heines/91.461/91.461-2010-11f/CSSTests/FormattingText/build/web/FormattingText-v9_Fall2014.html
+        //
+        // Stopped using this function because console in chrome was saying it is deprecated.
+        //
+        // This function will run after the body has been loaded
         /*jQuery.ajax({
          async: false,
          dataType: "json",
@@ -96,7 +102,7 @@
             strContent += "<h1>" + story.cars[0].make + " " + story.cars[0].model + "</h1>";
             strContent += "</div> </div>";
 
-            strContent += "<p><a href='../JSON/STIModelYears.json' style='color:black'>Click here for link to JSON file</a></p>";
+            strContent += "<div class='col-md-12'><p><a href='../JSON/STIModelYears.json' style='color:black'>Click here for link to JSON file</a></p></div>";
             for (var carLen = 0; carLen < story.cars.length; carLen++) {
                 strContent += "<div class='col-md-12'>";
                 strContent += "<div class='panel panel-primary'>";
