@@ -17,6 +17,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Assignment 5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap source from http://getbootstrap.com/getting-started/-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!--
         load jQuery library from the Google Content Delivery Network (CDN)
@@ -30,73 +39,132 @@
     <!-- load the JSON file containing your text -->
     <script type="text/javascript">
         // this function will run after the body has been loaded
-        jQuery.ajax({
-            async: false,
-            dataType: "json",
-            url: "../JSON/STIModelYears.json" ,
-            success: function( data ) {
-                story = data ;
-            }
+        /*jQuery.ajax({
+         async: false,
+         dataType: "json",
+         url: "../JSON/STIModelYears.json" ,
+         success: function( data ) {
+         story = data ;
+         }
+         });
+
+         jQuery(document).ready( function() {
+         placeContent(  ) ;
+         } ) ;
+         */
+
+        <!-- load the JSON file containing the text of Lincoln's Gettysburg address -->
+        // this function will run after the body has been loaded
+        jQuery(document).ready(function () {
+            jQuery.get("../JSON/STIModelYears.json", function (data) {
+                placeContent(data);
+            }, "json");
         });
 
-        jQuery(document).ready( function() {
-            placeContent(  ) ;
-        } ) ;
     </script>
 
 
     <!-- script to place JSON text in the placeholder (div#content) on the page -->
     <script type="text/javascript">
         // N.B.  This version *does* apply the CSS.
-        function placeContent( ) {
+        function placeContent(story) {
             var strContent = "";
 
             // create dynamic content from JSON
             /*for( var carLen = 0; carLen < story.cars.length; carLen++ ){
-                strContent += "<h1 class='year'>" + story.cars[carLen].year + "</h1>" ;
-                strContent += "<h2 class='make'>" + story.cars[carLen].make + "</h2>" ;
-                strContent += "<h2 class='model'>" + story.cars[carLen].model + "</h2>" ;
+             strContent += "<h1 class='year'>" + story.cars[carLen].year + "</h1>" ;
+             strContent += "<h2 class='make'>" + story.cars[carLen].make + "</h2>" ;
+             strContent += "<h2 class='model'>" + story.cars[carLen].model + "</h2>" ;
 
-                strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
-                strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
-            }*/
-
-            for( var carLen = 0; carLen < story.cars.length; carLen++ ){
-                strContent += "<h1 class='year'>" + story.cars[carLen].year + " "
-                           + story.cars[carLen].make + " "
-                           +  story.cars[carLen].model + "</h1>" ;
-
-                strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
-                strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
-            }
-
+             strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
+             strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
+             }*/
             /*
-            // loop through all the paragraphs and sentences
-            for ( var para = 0 ; para < story.cars.about.paragraphs.length ; para++ ) {
+             for( var carLen = 0; carLen < story.cars.length; carLen++ ){
+             strContent += "<h1 class='year'>" + story.cars[carLen].year + " "
+             + story.cars[carLen].make + " "
+             +  story.cars[carLen].model + "</h1>" ;
 
-            }*/
+             strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
+             strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
+             }
+             */
+            strContent += "<div class='container'>";
+            strContent += "<div class='jumbotron text-center'>";
+            strContent += "<div class='container'>";
+            strContent += "<h1>" + story.cars[0].make + " " + story.cars[0].model + "</h1>";
+            strContent += "</div> </div>";
+
+            strContent += "<p><a href='../JSON/STIModelYears.json' style='color:black'>Click here for link to JSON file</a></p>";
+            for (var carLen = 0; carLen < story.cars.length; carLen++) {
+                strContent += "<div class='col-md-12'>";
+                strContent += "<div class='panel panel-primary'>";
+                strContent += "<div class='panel-heading'><h4 style='text-align:center'>" + story.cars[carLen].year + " "
+                        + story.cars[carLen].make + " "
+                        + story.cars[carLen].model + "</h4></div>";
+                strContent += "<div class='panel-body'><p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
+                strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
+                strContent += "</div> </div> </div> ";
+            }
+            strContent += "</div>";
+
 
             // place dynamic content on page
             // document.getElementById( "content" ).innerHTML = strContent ;
-            $("#content").html( strContent ) ;
+            $("#content").html(strContent);
         }
 
         //Was just used to get placing content working.
-        function placeContent2(  ){
+        function placeContent2() {
             var strContent = "";
 
             // create dynamic content from JSON
-            strContent += "<h1 class='year'>" + "2004" + "</h1>" ;
-            strContent += "<h2 class='make'>" + "Subaru" + "</h2>" ;
-            strContent += "<h2 class='model'>" + "WRX STI" + "</h2>" ;
-            $("#content").html( strContent ) ;
+            strContent += "<h1 class='year'>" + "2004" + "</h1>";
+            strContent += "<h2 class='make'>" + "Subaru" + "</h2>";
+            strContent += "<h2 class='model'>" + "WRX STI" + "</h2>";
+            $("#content").html(strContent);
         }
     </script>
 
 
 </head>
 <body>
+<!--Got example from  http://getbootstrap.com/examples/navbar/-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/~cmulkern">Mulky</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/~cmulkern">Home</a></li>
+                    <li class="active dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assignments<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="/~cmulkern/assignments/assignment1.html">Assignment 1</a></li>
+                            <li><a href="/~cmulkern/assignments/assignment2.html">Assignment 2</a></li>
+                            <li><a href="/~cmulkern/assignments/assignment3.html">Assignment 3</a></li>
+                            <li><a href="http://mulks.github.io/Mulks/">Assignment 4</a></li>
+                            <li class="disabled"><a href="/~cmulkern/assignments/assignment5.html">Assignment 5</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/~cmulkern/assignments/">All Assignments</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/~cmulkern/about/">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--Navbar for website navigation. -->
 
-    <div id="content"></div>
+<div id="content"></div>
 </body>
 </html>

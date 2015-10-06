@@ -1,0 +1,15 @@
+/* Cody Mulkern
+   File: css/custom.css
+	 Cody_Mulkern@student.uml.edu
+	 Computer Science Student UMass Lowell 91.461 GUI Programming I
+	 Date: 10/2/2015
+   Updated:10/3/2015 by Cody Mulkern
+
+*/
+
+/*This is to solve scroll bar appearing problem that shifts the navbar.
+I found this solution on: http://stackoverflow.com/questions/22212538/how-to-stop-bootstrap-3-1-1-from-shift-content-left-when-scroll-bar-appears*/
+
+html {
+    overflow-y: scroll;
+}
