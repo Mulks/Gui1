@@ -7,14 +7,42 @@
 
 */
 
-/*This is to solve scroll bar appearing problem that shifts the navbar.
-I found this solution on: http://stackoverflow.com/questions/22212538/how-to-stop-bootstrap-3-1-1-from-shift-content-left-when-scroll-bar-appears*/
+/*
+    This is to solve scroll bar appearing problem that shifts the navbar.
+    I found this solution on: http://stackoverflow.com/questions/22212538/how-to-stop-bootstrap-3-1-1-from-shift-content-left-when-scroll-bar-appears
+*/
 
 html {
     overflow-y: scroll;
 }
 
 body {
-    background: darkgray;
+    background: black;
 }
 
+/*
+    http://www.bootply.com/Qv3mTOHQ6y
+*/
+.widewrapper {
+    width:100%;
+}
+
+.widewrapper > img {
+    width:100%;
+}
+
+.panel-danger > .panel-heading  {
+    /*background: #C70C47;*/
+    font-family: 'Montserrat', sans-serif;
+    background-image: none;
+    background-color: #C70C47;
+    color: black;
+}
+
+.panel-danger {
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+    border-color: #C70C47;
+    /*color: #C70C47;*/
+    color: white;
+}

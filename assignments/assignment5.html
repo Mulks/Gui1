@@ -12,6 +12,13 @@
         http://www.autoevolution.com/subaru/wrx/
         http://www.autoevolution.com/subaru/impreza-wrx-sti/
 
+   Subaru Tecnica International picture was taken from:
+        http://www.subaru-global.com/ms2015/newyork/
+
+   Javascript to read in JSON and print on page based off:
+        view-source:https://teaching.cs.uml.edu/~heines/91.461/91.461-2010-11f/CSSTests/FormattingText/build/web/FormattingText-v9_Fall2014.html
+        https://teaching.cs.uml.edu/~heines/91.461/91.461-2015-16f/461-assn/FormattingText-v05.jsp
+
 -->
 <html lang="en">
 <head>
@@ -27,6 +34,8 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
+    <!-- -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <!--
         load jQuery library from the Google Content Delivery Network (CDN)
         see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
@@ -60,8 +69,7 @@
          } ) ;
          */
 
-        <!-- load the JSON file containing the text of Lincoln's Gettysburg address -->
-        // this function will run after the body has been loaded
+        <!-- load the JSON file containing the text of STIModelYears.json -->
         jQuery(document).ready(function () {
             jQuery.get("../JSON/STIModelYears.json", function (data) {
                 placeContent(data);
@@ -77,7 +85,7 @@
         function placeContent(story) {
             var strContent = "";
 
-            // create dynamic content from JSON
+
             /*for( var carLen = 0; carLen < story.cars.length; carLen++ ){
              strContent += "<h1 class='year'>" + story.cars[carLen].year + "</h1>" ;
              strContent += "<h2 class='make'>" + story.cars[carLen].make + "</h2>" ;
@@ -96,17 +104,26 @@
              strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
              }
              */
+
+
+
+            // create dynamic content from JSON
             strContent += "<div class='container'>";
-            strContent += "<div class='jumbotron text-center'>";
-            strContent += "<div class='container'>";
-            strContent += "<img src='../pics/Subaru_Tecnica_International_(logo).png' class='img-responsive'  >";
+            strContent += "<div class='jumbotron' style='background-color:black'>";
+            strContent += "<div class='widewrapper main'>";
+
+            /*
+                I got this image off the subaru-global website to use on this page.
+                http://www.subaru-global.com/ms2015/newyork/
+            */
+            strContent += "<img src='../pics/sti_logo_large.png' class='img-responsive'  >";
             //strContent += "<h1>" + story.cars[0].make + " " + story.cars[0].model + "</h1>";
             strContent += "</div> </div>";
 
             strContent += "<div class='col-md-12'><p><a href='../JSON/STIModelYears.json' style='color:black'>Click here for link to JSON file</a></p></div>";
             for (var carLen = 0; carLen < story.cars.length; carLen++) {
                 strContent += "<div class='col-md-12'>";
-                strContent += "<div class='panel panel-primary'>";
+                strContent += "<div class='panel panel-danger'>";
                 strContent += "<div class='panel-heading'><h4 style='text-align:center'>" + story.cars[carLen].year + " "
                         + story.cars[carLen].make + " "
                         + story.cars[carLen].model + "</h4></div>";
