@@ -14,11 +14,14 @@
 
    Subaru Tecnica International picture was taken from:
         http://www.subaru-global.com/ms2015/newyork/
+        http://www.subaru-global.com/ms2015/newyork/images/sti_logo_large.png
 
    Javascript to read in JSON and print on page based off:
         view-source:https://teaching.cs.uml.edu/~heines/91.461/91.461-2010-11f/CSSTests/FormattingText/build/web/FormattingText-v9_Fall2014.html
         https://teaching.cs.uml.edu/~heines/91.461/91.461-2015-16f/461-assn/FormattingText-v05.jsp
 
+   Bootstrap Source from:
+        Bootstrap source from http://getbootstrap.com/getting-started/
 -->
 <html lang="en">
 <head>
@@ -26,16 +29,6 @@
     <title>Assignment 5</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap source from http://getbootstrap.com/getting-started/-->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-    <!-- -->
-    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <!--
         load jQuery library from the Google Content Delivery Network (CDN)
         see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
@@ -44,6 +37,19 @@
         http://jquery.com/download/
     -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <!-- Bootstrap source from http://getbootstrap.com/getting-started/-->
+    <!-- Latest compiled and minified CSS -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- Montserrat font from Google.com -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
 
     <!-- load the JSON file containing your text -->
     <script type="text/javascript">
@@ -86,41 +92,25 @@
             var strContent = "";
 
 
-            /*for( var carLen = 0; carLen < story.cars.length; carLen++ ){
-             strContent += "<h1 class='year'>" + story.cars[carLen].year + "</h1>" ;
-             strContent += "<h2 class='make'>" + story.cars[carLen].make + "</h2>" ;
-             strContent += "<h2 class='model'>" + story.cars[carLen].model + "</h2>" ;
-
-             strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
-             strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
-             }*/
-            /*
-             for( var carLen = 0; carLen < story.cars.length; carLen++ ){
-             strContent += "<h1 class='year'>" + story.cars[carLen].year + " "
-             + story.cars[carLen].make + " "
-             +  story.cars[carLen].model + "</h1>" ;
-
-             strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
-             strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
-             }
-             */
-
-
-
             // create dynamic content from JSON
+            /*
+             Create jumbotron and add picture to it.
+             I got this image off the subaru-global website to use on this page.
+             http://www.subaru-global.com/ms2015/newyork/
+             */
             strContent += "<div class='container'>";
             strContent += "<div class='jumbotron' style='background-color:black'>";
             strContent += "<div class='widewrapper main'>";
-
-            /*
-                I got this image off the subaru-global website to use on this page.
-                http://www.subaru-global.com/ms2015/newyork/
-            */
             strContent += "<img src='../pics/sti_logo_large.png' class='img-responsive'  >";
             //strContent += "<h1>" + story.cars[0].make + " " + story.cars[0].model + "</h1>";
             strContent += "</div> </div>";
 
-            strContent += "<div class='col-md-12'><p><a href='../JSON/STIModelYears.json' style='color:black'>Click here for link to JSON file</a></p></div>";
+
+            /*
+             Read in the JSON file.
+             Create Divs and nest the Bootstrap panels inside with a header and paragraphs inside.
+             */
+            strContent += "<div class='col-md-12'><p><a href='../JSON/STIModelYears.json' style='color:white; style='font-family: 'Montserrat', sans-serif'>Click here for link to JSON file</a></p></div>";
             for (var carLen = 0; carLen < story.cars.length; carLen++) {
                 strContent += "<div class='col-md-12'>";
                 strContent += "<div class='panel panel-danger'>";
@@ -139,9 +129,32 @@
             $("#content").html(strContent);
         }
 
-        //Was just used to get placing content working.
+
+        /*
+         Used this function for testing to get printing to work.
+         Also used this to test different formatting for printing out the JSON
+         */
         function placeContent2() {
             var strContent = "";
+
+            for (var carLen = 0; carLen < story.cars.length; carLen++) {
+                strContent += "<h1 class='year'>" + story.cars[carLen].year + "</h1>";
+                strContent += "<h2 class='make'>" + story.cars[carLen].make + "</h2>";
+                strContent += "<h2 class='model'>" + story.cars[carLen].model + "</h2>";
+
+                strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
+                strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
+            }
+
+            for (var carLen = 0; carLen < story.cars.length; carLen++) {
+                strContent += "<h1 class='year'>" + story.cars[carLen].year + " "
+                        + story.cars[carLen].make + " "
+                        + story.cars[carLen].model + "</h1>";
+
+                strContent += "<p>" + story.cars[carLen].paragraphs[0][0] + "</p>";
+                strContent += "<p>" + story.cars[carLen].paragraphs[1][0] + "</p>";
+            }
+
 
             // create dynamic content from JSON
             strContent += "<h1 class='year'>" + "2004" + "</h1>";
@@ -156,6 +169,8 @@
 
 </head>
 <body>
+
+<!--Navbar for website navigation. -->
 <!--Got example from  http://getbootstrap.com/examples/navbar/-->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -179,7 +194,7 @@
                             <li><a href="/~cmulkern/assignments/assignment2.html">Assignment 2</a></li>
                             <li><a href="/~cmulkern/assignments/assignment3.html">Assignment 3</a></li>
                             <li><a href="http://mulks.github.io/Mulks/">Assignment 4</a></li>
-                            <li class="disabled"><a href="/~cmulkern/assignments/assignment5.html">Assignment 5</a></li>
+                            <li><a href="/~cmulkern/assignments/assignment5.html">Assignment 5</a></li>
                             <li class="divider"></li>
                             <li><a href="/~cmulkern/assignments/">All Assignments</a></li>
                         </ul>
@@ -192,6 +207,10 @@
 </nav>
 <!--Navbar for website navigation. -->
 
+
+<!-- Where everything is going to be put -->
 <div id="content"></div>
+
+
 </body>
 </html>
