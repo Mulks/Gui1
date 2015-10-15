@@ -7,9 +7,59 @@
 
 */
 
-/*This is to solve scroll bar appearing problem that shifts the navbar.
-I found this solution on: http://stackoverflow.com/questions/22212538/how-to-stop-bootstrap-3-1-1-from-shift-content-left-when-scroll-bar-appears*/
+/*
+    This is to solve scroll bar appearing problem that shifts the navbar.
+    I found this solution on: http://stackoverflow.com/questions/22212538/how-to-stop-bootstrap-3-1-1-from-shift-content-left-when-scroll-bar-appears
+*/
 
 html {
     overflow-y: scroll;
+}
+
+/*
+    Make the background of the page black.
+*/
+body {
+    background: black;
+}
+
+
+/*
+    .widerapper is used to make img take up whole jumbotron.
+    Found this example on:
+    http://www.bootply.com/Qv3mTOHQ6y
+*/
+.widewrapper {
+    width:100%;
+}
+
+.widewrapper > img {
+    width:100%;
+}
+
+
+/*
+    Makes the panel-heading have a backgground color that is similar to the STI pink.
+    Also allows to change background image which is where the gradient is and also text color.
+    Commented out the gradient with color change was not sure if I like it.
+
+    Added google font from:        https://fonts.googleapis.com/css?family=Montserrat
+    How to change panel-heading:   http://stackoverflow.com/questions/26505033/how-to-override-bootstraps-panel-heading-background-color
+    How to change border-color :   http://stackoverflow.com/questions/29013014/removing-a-css-border-from-bootstrap-panel
+    How to change linear-gradient: https://css-tricks.com/css3-gradients/
+*/
+.panel-danger > .panel-heading  {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    /*background-image: linear-gradient( #C70C47 , #D53968 );*/
+    background-image: none;
+    background-color: #C70C47;
+}
+
+.panel-danger {
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
+    border-color: #C70C47;
+    /*color: #C70C47;*/
+    color: white;
 }
