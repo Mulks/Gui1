@@ -75,6 +75,8 @@
         * */
         function buildTable(){
 
+            document.getElementById("xLengthError").innerHTML = "";
+            document.getElementById("yLengthError").innerHTML = "";
             /*
             * Create 4 variables taken from the forum.
             * */
@@ -84,7 +86,24 @@
                 yStart = parseInt($('input[name=rx]').val());
 
             if( yLength > 24 || xLength > 24){
+                /*
+                Used this for errors but didn't like the popup
                 alert("Please Enter Lengths Below 24");
+                 */
+
+                /*
+                *   These print errors statements next to the form selection that was too large.
+                * */
+                if( xLength > 24 && yLength > 24 ){
+                    document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 24";
+                    document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 24";
+                }
+                else if( yLength > 24 ){
+                    document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 24";
+                }
+                else if( xLength > 24 ){
+                    document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 24";
+                }
                 yLength = 10;
                 xLength = 10;
                 resetForum();
@@ -236,9 +255,9 @@
                 -->
                 <form id="multTable">
                     <label>Length Y:</label>
-                    <input type="text" value="10" size="6" name="r" /><br>
+                    <input type="text" value="10" size="6" name="r" /><span id="yLengthError" style="color:red; font-weight: bold"></span><br>
                     <label>Length X:</label>
-                    <input type="text" value="10" size="6" name="c" /><br>
+                    <input type="text" value="10" size="6" name="c" /><span id="xLengthError" style="color:red; font-weight: bold"></span><br>
                     <label>Start  Y:</label>
                     <input type="text" value="1" size="6" name="ry" /><br>
                     <label>Start  X:</label>
