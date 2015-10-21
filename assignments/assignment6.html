@@ -83,6 +83,13 @@
                 xStart = parseInt($('input[name=ry]').val()),
                 yStart = parseInt($('input[name=rx]').val());
 
+            if( yLength > 24 || xLength > 24){
+                alert("Please Enter Lengths Below 24");
+                yLength = 10;
+                xLength = 10;
+                resetForum();
+
+            }
             /*
             * Use dx and dy to hold values passed in and be able to change them without
             * affecting the original values so these can be reset when needed.
@@ -105,7 +112,7 @@
 
             if(typeof yLength === 'number' && yLength > 0 && typeof xLength === 'number' && xLength > 0){
                 var table = '<table>';
-
+                table += '<tbody>';
                 for(var i = 0; i <= yLength; i++){
                     var y1col = true;
                     dx = xStart;
@@ -114,12 +121,12 @@
 
                         /*Test for first cell in table if true leave blank.*/
                         if( firstPassY == true ){
-                            table += '<td>'+"  "+'</td>';
+                            table += '<td class="emptyCell">'+"  "+'</td>';
                             firstPassY = false;
                         }
                         /*Test for first row to populate given values.*/
                         else if( firstPassX == true){
-                            table += '<td>'+dx+'</td>';
+                            table += '<td class="topRow">'+dx+'</td>';
                             dx++;
                         }
                         /*Fill in all other table values.*/
@@ -148,6 +155,7 @@
                     /*After first row make false to start incrementing y.*/
                     secondPassY = false;
                 }
+                table += '</tbody>';
                 table += '</table>';
                 $('#table').html(table);
             }

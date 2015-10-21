@@ -14,13 +14,42 @@ html {
     overflow-y: scroll;
 }
 
+tr:nth-child(1){
+    background-color:lightcoral;
+}
+
+/*
+    creates border of 2 pixels,
+            padding of 8 pixel,
+            aligns text in center,
+            and makes background lightgreen.
+*/
 td{
     border:2px solid black;
-    padding: 10px;
+    padding: 8px;
     text-align:center;
     background:lightgreen;
-;
 }
+
+/*
+    Changes every other column background to lightblue.
+*/
 td:nth-child(odd){
     background:lightblue;
 }
+
+/*
+    Changes the top row and the first column to lightcoral to make it easy to
+    see that these are the numbers chosen by user.
+*/
+td:nth-child(1), td.topRow {
+    background:lightcoral;
+}
+
+/*
+    Changes the empty cell to lightblue for kicks.
+*/
+td.emptyCell {
+    background:lightblue;
+}
+
