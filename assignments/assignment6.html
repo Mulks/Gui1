@@ -4,9 +4,9 @@
    File: assignments/assignment6.html
 	 Cody_Mulkern@student.uml.edu
 	 Computer Science Student UMass Lowell 91.461 GUI Programming I
-	 Date: 9/8/2015
-   Updated: 9/17/15 by Cody Mulkern
-   Updated:10/02/15 by Cody Mulkern
+	 Date:  10/14/2015
+   Updated: 10/15/15 by Cody Mulkern
+   Updated: 10/20/15 by Cody Mulkern
 -->
 <html lang="en">
 
@@ -24,32 +24,84 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- My own css overriding bootstrap's css-->
-    <link rel="stylesheet" type="text/css" href="/Gui1/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/Gui1/css/table.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script>
+
+        /*
+        * Found this function online to take the form and call the function to create the table.
+        *   The user is OxyDesign
+        *   -http://stackoverflow.com/questions/26004342/javascript-multiplication-table
+        *   -http://jsfiddle.net/OxyDesign/kb294v6a/
+        *
+        * */
         $(document).ready(function(){
-            makeTable();
+            buildTable();
             $('form').on('submit',function(e){
                 e.preventDefault();
-                makeTable();
+                buildTable();
             });
+
         });
 
-        function makeTable(){
-            var yLength = parseInt($('input[name=r]').val()),
-                    xLength  = parseInt($('input[name=c]').val()),
-                    xStart = parseInt($('input[name=x]').val()),
-                    yStart  = parseInt($('input[name=y]').val());
+        /*
+        * This function resets the form values and then clicks the 'Make Table' button to reset the table.
+        *
+        * */
+        function resetForum(){
+            document.getElementById("multTable").reset();
+            document.getElementById("buildTable").click();
+        }
 
+
+        /*
+        * This function builds the multiplication table.
+        *
+        *   The base of this function was found at:
+        *       The user is OxyDesign
+        *       -http://stackoverflow.com/questions/26004342/javascript-multiplication-table
+        *       -http://jsfiddle.net/OxyDesign/kb294v6a/
+        *
+        *   There was a for loop to build a table, and I had to:
+        *       -Take 4 variables not 2
+        *       -Needed to be able to start the table at arbitrary values in either direction.
+        *
+        *   The only parts left from the example I found was the IF statement the two forloop statements and the $('#table').html(table).
+        *
+        * */
+        function buildTable(){
+
+            /*
+            * Create 4 variables taken from the forum.
+            * */
+            var yLength = parseInt($('input[name=r]').val()),
+                xLength = parseInt($('input[name=c]').val()),
+                xStart = parseInt($('input[name=ry]').val()),
+                yStart = parseInt($('input[name=rx]').val());
+
+            /*
+            * Use dx and dy to hold values passed in and be able to change them without
+            * affecting the original values so these can be reset when needed.
+            *
+            * firstPassX - is used to test if it is in the top x row and print the values that were specified by user.
+            *
+            * firstPassY - is used to test for the first cell in the table and if true make it blank.
+            *
+            * secondPassY - is used to test for second row of the table because dy should not
+            * get incremented before that or the table will be off by 1.
+            *
+            *
+            * */
             var dx = xStart;
             var dy = yStart;
             var firstPassX = true;
             var firstPassY = true;
             var secondPassY = true;
+
 
             if(typeof yLength === 'number' && yLength > 0 && typeof xLength === 'number' && xLength > 0){
                 var table = '<table>';
@@ -60,23 +112,27 @@
                     table += '<tr>';
                     for(var j = 0; j <= xLength; j++){
 
+                        /*Test for first cell in table if true leave blank.*/
                         if( firstPassY == true ){
                             table += '<td>'+"  "+'</td>';
                             firstPassY = false;
                         }
+                        /*Test for first row to populate given values.*/
                         else if( firstPassX == true){
                             table += '<td>'+dx+'</td>';
                             dx++;
                         }
+                        /*Fill in all other table values.*/
                         else{
+                            /*Test for the first column to populate given values.*/
                             if( y1col == true){
                                 table += '<td>'+dy+'</td>';
                                 y1col = false;
                             }
+                            /*Needed this to fix my off by 1. Was production a extra column after the first row.*/
                             if( j != xLength ){
                                 table += '<td>'+dx*dy+'</td>';
                             }
-
                             dx++;
                         }
 
@@ -84,9 +140,12 @@
                     }
                     firstPassX = false;
                     table += '</tr>';
+
+                    /*Needed this to only increment the y after the first row because it was left blank in first row.*/
                     if( secondPassY == false ){
                         dy++;
                     }
+                    /*After first row make false to start incrementing y.*/
                     secondPassY = false;
                 }
                 table += '</table>';
@@ -95,23 +154,7 @@
         }
     </script>
 
-    <style>
 
-        td{
-            border-collapse: separate;
-            border-spacing: 20px 20px;
-            border:1px solid black;
-            width:40px;
-            height:40px;
-            text-align:center;
-            background:lightgreen;
-
-
-        }
-        td:nth-child(odd){
-            background:lightblue;
-        }
-    </style>
 
 </head>
 
@@ -175,16 +218,25 @@
     <div class="container">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <form>
+                <!--
+                    Multiplication Table:
+                        r = LengthY
+                        c = LengthX
+                        ry = StartY
+                        rx = StartX
+
+                -->
+                <form id="multTable">
                     <label>Length Y:</label>
                     <input type="text" value="10" size="6" name="r" /><br>
                     <label>Length X:</label>
                     <input type="text" value="10" size="6" name="c" /><br>
                     <label>Start  Y:</label>
-                    <input type="text" value="1" size="6" name="x" /><br>
+                    <input type="text" value="1" size="6" name="ry" /><br>
                     <label>Start  X:</label>
-                    <input type="text" value="1" size="6" name="y" /><br>
-                    <input type="submit" value="Build Table" />
+                    <input type="text" value="1" size="6" name="rx" /><br><br>
+                    <input type="submit" id="buildTable" value="Build Table" />
+                    <input type="button" onclick="resetForum()" value="Reset" />
                 </form>
             </div>
             <div class="panel-body">
