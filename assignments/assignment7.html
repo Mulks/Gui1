@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <!-- Cody Mulkern
-   File: assignments/assignment6.html
+   File: assignments/assignment7.html
 	 Cody_Mulkern@student.uml.edu
 	 Computer Science Student UMass Lowell 91.461 GUI Programming I
 	 Date:  10/14/2015
@@ -12,7 +12,7 @@
 
 
 <head>
-    <title>Assignment 6</title>
+    <title>Assignment 7</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,12 +33,12 @@
     <script>
 
         /*
-        * Found this function online to take the form and call the function to create the table.
-        *   The user is OxyDesign
-        *   -http://stackoverflow.com/questions/26004342/javascript-multiplication-table
-        *   -http://jsfiddle.net/OxyDesign/kb294v6a/
-        *
-        * */
+         * Found this function online to take the form and call the function to create the table.
+         *   The user is OxyDesign
+         *   -http://stackoverflow.com/questions/26004342/javascript-multiplication-table
+         *   -http://jsfiddle.net/OxyDesign/kb294v6a/
+         *
+         * */
         $(document).ready(function(){
             buildTable();
             $('form').on('submit',function(e){
@@ -49,9 +49,9 @@
         });
 
         /*
-        * This function resets the form values and then clicks the 'Make Table' button to reset the table.
-        *
-        * */
+         * This function resets the form values and then clicks the 'Make Table' button to reset the table.
+         *
+         * */
         function resetForum(){
             document.getElementById("multTable").reset();
             document.getElementById("buildTable").click();
@@ -59,41 +59,41 @@
 
 
         /*
-        * This function builds the multiplication table.
-        *
-        *   The base of this function was found at:
-        *       The user is OxyDesign
-        *       -http://stackoverflow.com/questions/26004342/javascript-multiplication-table
-        *       -http://jsfiddle.net/OxyDesign/kb294v6a/
-        *
-        *   There was a for loop to build a table, and I had to:
-        *       -Take 4 variables not 2
-        *       -Needed to be able to start the table at arbitrary values in either direction.
-        *
-        *   The only parts left from the example I found was the IF statement the two forloop statements and the $('#table').html(table).
-        *
-        * */
+         * This function builds the multiplication table.
+         *
+         *   The base of this function was found at:
+         *       The user is OxyDesign
+         *       -http://stackoverflow.com/questions/26004342/javascript-multiplication-table
+         *       -http://jsfiddle.net/OxyDesign/kb294v6a/
+         *
+         *   There was a for loop to build a table, and I had to:
+         *       -Take 4 variables not 2
+         *       -Needed to be able to start the table at arbitrary values in either direction.
+         *
+         *   The only parts left from the example I found was the IF statement the two forloop statements and the $('#table').html(table).
+         *
+         * */
         function buildTable(){
 
             document.getElementById("xLengthError").innerHTML = "";
             document.getElementById("yLengthError").innerHTML = "";
             /*
-            * Create 4 variables taken from the forum.
-            * */
+             * Create 4 variables taken from the forum.
+             * */
             var yLength = parseInt($('input[name=r]').val()),
-                xLength = parseInt($('input[name=c]').val()),
-                xStart = parseInt($('input[name=ry]').val()),
-                yStart = parseInt($('input[name=rx]').val());
+                    xLength = parseInt($('input[name=c]').val()),
+                    xStart = parseInt($('input[name=ry]').val()),
+                    yStart = parseInt($('input[name=rx]').val());
 
             if( yLength > 24 || xLength > 24){
                 /*
-                Used this for errors but didn't like the popup
-                alert("Please Enter Lengths Below 24");
+                 Used this for errors but didn't like the popup
+                 alert("Please Enter Lengths Below 24");
                  */
 
                 /*
-                *   These print errors statements next to the form selection that was too large.
-                * */
+                 *   These print errors statements next to the form selection that was too large.
+                 * */
                 if( xLength > 24 && yLength > 24 ){
                     document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 24";
                     document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 24";
@@ -110,18 +110,18 @@
 
             }
             /*
-            * Use dx and dy to hold values passed in and be able to change them without
-            * affecting the original values so these can be reset when needed.
-            *
-            * firstPassX - is used to test if it is in the top x row and print the values that were specified by user.
-            *
-            * firstPassY - is used to test for the first cell in the table and if true make it blank.
-            *
-            * secondPassY - is used to test for second row of the table because dy should not
-            * get incremented before that or the table will be off by 1.
-            *
-            *
-            * */
+             * Use dx and dy to hold values passed in and be able to change them without
+             * affecting the original values so these can be reset when needed.
+             *
+             * firstPassX - is used to test if it is in the top x row and print the values that were specified by user.
+             *
+             * firstPassY - is used to test for the first cell in the table and if true make it blank.
+             *
+             * secondPassY - is used to test for second row of the table because dy should not
+             * get incremented before that or the table will be off by 1.
+             *
+             *
+             * */
             var dx = xStart;
             var dy = yStart;
             var firstPassX = true;
@@ -238,7 +238,7 @@
     <!--Div for Jumbotron shows some information -->
     <div class="container">
         <div class="jumbotron text-center">
-            <h1>Assignment 6</h1>
+            <h1>Assignment 7</h1>
             <p>91.461 GUI Programming</p>
         </div>
     </div>
