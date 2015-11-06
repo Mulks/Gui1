@@ -24,6 +24,18 @@ $(document).ready(function(){
             r: {
                 required: true,
                 digits: true
+            },
+            c: {
+                required: true,
+                digits: true
+            },
+            ry: {
+                required: true,
+                digits: true
+            },
+            rx: {
+                required: true,
+                digits: true
             }
         },
 
@@ -73,7 +85,7 @@ function buildTable(){
         yStart = parseInt($('input[name=rx]').val());
 
     //Is never reached with jQuery validation being checked
-    if( yLength > 50 || xLength > 50 ){
+    if( yLength > 50 || xLength > 50 || isNaN(xStart) || isNaN(yStart) ){
 
          /*Used this for errors but didn't like the popup
          alert("Please Enter Lengths Below 24");
@@ -95,7 +107,7 @@ function buildTable(){
         yLength = 10;
         xLength = 10;
         resetForum();
-
+        return;
     }
     /*
      * Use dx and dy to hold values passed in and be able to change them without
