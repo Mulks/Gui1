@@ -14,76 +14,23 @@ $(document).ready(function(){
         buildTable();
     });
 
+    //Got this from http://jqueryvalidation.org/digits-method
     jQuery.validator.setDefaults({
         debug: true,
         success: buildTable()
     });
     $( "#multTable" ).validate({
         rules: {
-            field: {
+            r: {
                 required: true,
                 digits: true
             }
-        }
-    });
-    /*
-    $("#multTable").validate({
-        rules : {
-            r : {
-                required: true,
-                digits: true
-            },
-            c : {
-                required: true,
-                digits: true
-            },
-            ry : {
-                required: true,
-                digits: true
-            },
-            rx : {
-                required: true,
-                digits: true
-            }
+        },
 
-        },
-        messages : {
-            r : {
-                required : "Please enter a number 0 - 50"
-            },
-            c : {
-                required : "Please enter a number 0 - 50"
-            },
-            ry : {
-                required : "Please enter a number 0 - 50"
-            },
-            rx : {
-                required : "Please enter a number 0 - 50"
-            }
-        },
-        // the errorPlacement has to take the table layout into account
-        errorPlacement: function(error, element) {
-            if (element.is(":radio"))
-                error.appendTo(element.parent().next().next());
-            else if (element.is(":checkbox"))
-                error.appendTo(element.next());
-            else
-                error.appendTo(element.parent().next());
-        },
-        // specifying a submitHandler prevents the default submit, good for the demo
-        submitHandler: function() {
-            buildTable();
-        },
-        // set this class to error-labels to indicate valid fields
-        success: function(label) {
-            // set &nbsp; as text for IE
-            label.html("&nbsp;").addClass("checked");
-        },
-        highlight: function(element, errorClass) {
-            $(element).parent().next().find("." + errorClass).removeClass("checked");
-        }
     });
-    */
+
+
+
 
 });
 
@@ -125,9 +72,10 @@ function buildTable(){
         xStart = parseInt($('input[name=ry]').val()),
         yStart = parseInt($('input[name=rx]').val());
 
+    //Is never reached with jQuery validation being checked
     if( yLength > 50 || xLength > 50 ){
-        /*
-         Used this for errors but didn't like the popup
+
+         /*Used this for errors but didn't like the popup
          alert("Please Enter Lengths Below 24");
          */
 
