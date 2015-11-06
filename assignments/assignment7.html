@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
 <!-- Cody Mulkern
-   File: assignments/assignment2.html
+   File: assignments/assignment7.html
 	 Cody_Mulkern@student.uml.edu
 	 Computer Science Student UMass Lowell 91.461 GUI Programming I
-	 Date: 9/8/2015
-   Updated: 9/17/15 by Cody Mulkern
-   Updated:10/02/15 by Cody Mulkern
+	 Date:  10/14/2015
+   Updated: 10/15/15 by Cody Mulkern
+   Updated: 10/20/15 by Cody Mulkern
 -->
 <html lang="en">
 
 
 <head>
-    <title>Assignment 2</title>
+    <title>Assignment 7</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,11 +24,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
     <!-- My own css overriding bootstrap's css-->
-    <link rel="stylesheet" type="text/css" href="/Gui1/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="/Gui1/css/table.css">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.js"></script>
+
+    <!--My javascript for assignment 7 -->
+    <script src="../JS/as7.js"></script>
+
 
 
 
@@ -81,37 +87,61 @@
 </nav>
 <!--Navbar for website navigation. -->
 
-<!--Div for Jumbotron shows some information -->
-<div class="container">
-    <div class="jumbotron text-center">
-        <h1>Assignment 2</h1>
-        <p>91.461 GUI Programming</p>
-    </div>
-</div>
+
 <!-- Begin Body -->
 <div class="container">
-    <!--Assignment Panel Begin Div -->
-    <!-- Panel Types: Success for completed assignments
-                          Primary for current assignments
-                          Danger for upcoming assignments
-        -->
-    <div class="col-md-12">
-        <div class="panel panel-success" id="assignment2">
-            <div class="panel-heading">Assignment 2</div>
+    <!--Div for Jumbotron shows some information -->
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Assignment 7</h1>
+            <p>91.461 GUI Programming</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="well well-sm">
+            <p>Table Rules:</p>
+            <p>Length Y: < 50</p>
+            <p>Length X: < 50</p>
+
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <!--
+                    Multiplication Table:
+                        r = LengthY
+                        c = LengthX
+                        ry = StartY
+                        rx = StartX
+
+                -->
+                <form class="cmxform" id="multTable" method="get" action="">
+                    <fieldset>
+                    <label for="lenY">Length Y:</label>
+                    <input id="lenY" min="1" max="50" type="text" value="10" size="6" name="r" required/><span id="yLengthError" style="color:red; font-weight: bold"></span><br>
+
+                    <label for="lenX">Length X:</label>
+                    <input id="lenX" min="1" max="50" type="text" value="10" size="6" name="c" required/><span id="xLengthError" style="color:red; font-weight: bold"></span><br>
+
+                    <label for="startY">Start  Y:</label>
+                    <input id="startY"  type="text" value="1" size="6" name="ry" required/><br>
+
+                    <label for="startX">Start  X:</label>
+                    <input id="startX"  type="text" value="1" size="6" name="rx" required/><br><br>
+
+                    <input type="submit" id="buildTable" value="Submit" />
+                    <input type="button" onclick="resetForum()" value="Reset" />
+                    </fieldset>
+                </form>
+
+            </div>
             <div class="panel-body">
-                <h3>Creating Your First Web Page</h3>
-                <ul>
-                    <li>Verify that your file system is set up correctly</li>
-                    <li>Create an HTML5 web page in your public_html directory</li>
-                    <li>Set the protection of your HTML file to 644</li>
-                    <li>Make sure that your file contains the following documentation within
-                        <!-- ... -->tags at the top of the file</li>
-                    <li>Verify that you can view your web page over the Internet</li>
-                    <li>Test your page using the <a href="http://validator.w3.org/">W3C Markup Validation Service (http://validator.w3.org/)</a></li>
-                </ul>
+                <div id="table"></div>
             </div>
         </div>
     </div>
+
+
 </div>
 <!--Assignment Panel End Div -->
 
