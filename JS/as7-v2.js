@@ -35,16 +35,10 @@ function submit (){
             ry: {
                 required: true,
                 digits: true,
-                min: {
-                    param: 1
-                }
             },
             rx: {
                 required: true,
                 digits: true,
-                min: {
-                    param: 1
-                }
             }
         },
         messages: {
