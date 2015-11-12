@@ -15,23 +15,36 @@ function submit (){
             r: {
                 required: true,
                 digits: true,
-                min: true,
-                max: true
+                min: {
+                    param: 1
+                },
+                max: {
+                    param: 50
+                }
             },
             c: {
                 required: true,
                 digits: true,
-                min: true
+                min: {
+                    param: 1
+                },
+                max: {
+                    param: 50
+                }
             },
             ry: {
                 required: true,
                 digits: true,
-                min: true
+                min: {
+                    param: 1
+                }
             },
             rx: {
                 required: true,
                 digits: true,
-                min: true
+                min: {
+                    param: 1
+                }
             }
         },
         messages: {
