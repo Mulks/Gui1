@@ -35,16 +35,10 @@ function submit (){
             ry: {
                 required: true,
                 digits: true,
-                min: {
-                    param: 1
-                }
             },
             rx: {
                 required: true,
                 digits: true,
-                min: {
-                    param: 1
-                }
             }
         },
         messages: {
@@ -62,11 +56,17 @@ function submit (){
             },
             ry: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number"
+                digits: "Must be a number",
+                min: {
+                    param: 0
+                }
             },
             rx: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number"
+                digits: "Must be a number",
+                min: {
+                    param: 0
+                }
             }
         },
         errorPlacement: function(error, element) {
