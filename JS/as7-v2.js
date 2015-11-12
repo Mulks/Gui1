@@ -9,33 +9,43 @@
 
 function submit (){
     //Got this from http://jqueryvalidation.org/digits-method
+
     $( "#multTable" ).validate({
         rules: {
             r: {
                 required: true,
-                digits: true
+                digits: true,
+                min: true,
+                max: true
             },
             c: {
                 required: true,
-                digits: true
+                digits: true,
+                min: true
             },
             ry: {
                 required: true,
-                digits: true
+                digits: true,
+                min: true
             },
             rx: {
                 required: true,
-                digits: true
+                digits: true,
+                min: true
             }
         },
         messages: {
             r: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number"
+                digits: "Must be a number",
+                min: "Must be greater than equal to 1",
+                max: "Must be less than or equal to 50"
             },
             c: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number"
+                digits: "Must be a number",
+                min: "Must be greater than equal to 1",
+                max: "Must be less than or equal to 50"
             },
             ry: {
                 required: "Must have a number greater than or equal to 1",
@@ -60,15 +70,10 @@ function submit (){
 
 
 $(document).ready(function(){
-    //buildTable();
+    buildTable();
 
     console.log("Ready function reached");
-    /*$('form').on('submit',function(e){
-        e.preventDefault();
-        buildTable();
-    });
-    */
-    //buildTable();
+
     submit();
 
 
@@ -85,7 +90,7 @@ $(document).ready(function(){
 function resetForum(){
     console.log("resetForm function reached");
     document.getElementById("multTable").reset();
-    document.getElementById("buildTable").click();
+    submit();
 }
 
 
@@ -118,34 +123,7 @@ function buildTable(){
         xStart = parseInt($('input[name=ry]').val()),
         yStart = parseInt($('input[name=rx]').val());
 
-    //Is never reached with jQuery validation being checked
 
-    if( yLength > 50 || xLength > 50 || isNaN(xStart) || isNaN(yStart) ){
-
-        /*Used this for errors but didn't like the popup
-         alert("Please Enter Lengths Below 24");
-         */
-
-        /*
-         These print errors statements next to the form selection that was too large.
-         */
-        /*if( xLength > 50 && yLength > 50 ){
-         document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 50";
-         document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 50";
-         }
-         else if( yLength > 50 ){
-         document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 50";
-         }
-         else if( xLength > 50 ){
-         document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 50";
-         }*/
-        yLength = 10;
-        xLength = 10;
-        xStart = 1;
-        yStart = 1;
-        resetForum();
-        return;
-    }
 
     /*
      * Use dx and dy to hold values passed in and be able to change them without
