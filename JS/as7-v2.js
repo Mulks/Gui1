@@ -56,11 +56,17 @@ function submit (){
             },
             ry: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number"
+                digits: "Must be a number",
+                min: {
+                    param: 0
+                }
             },
             rx: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number"
+                digits: "Must be a number",
+                min: {
+                    param: 0
+                }
             }
         },
         errorPlacement: function(error, element) {
