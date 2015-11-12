@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<!-- Cody Mulkern
+   File: assignments/assignment7.html
+	 Cody_Mulkern@student.uml.edu
+	 Computer Science Student UMass Lowell 91.461 GUI Programming I
+	 Date:  10/14/2015
+   Updated: 10/15/15 by Cody Mulkern
+   Updated: 10/20/15 by Cody Mulkern
+-->
+<html lang="en">
+
+
+<head>
+    <title>Assignment 7</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap source from http://getbootstrap.com/getting-started/-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- My own css overriding bootstrap's css-->
+    <link rel="stylesheet" type="text/css" href="/Gui1/css/table.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.js"></script>
+
+    <!--My javascript for assignment 7 -->
+    <script src="/Gui1/JS/as7-v2.js"></script>
+
+
+
+
+</head>
+
+
+<!--Navbar for website navigation. -->
+<!-- +Home
+  +Assignments
+  +->Assignment1
+  +->Assignment2
+  +->Assignment3
+  +->All Assignments
+  +About
+-->
+<!--Got example from  http://getbootstrap.com/examples/navbar/-->
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Gui1">Mulky</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Gui1">Home</a></li>
+                    <li class="active dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assignments<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="/Gui1/assignments/assignment1.html">Assignment 1</a></li>
+                            <li><a href="/Gui1/assignments/assignment2.html">Assignment 2</a></li>
+                            <li><a href="/Gui1/assignments/assignment3.html">Assignment 3</a></li>
+                            <li><a href="http://mulks.github.io/Gui1/">Assignment 4</a></li>
+                            <li><a href="/Gui1/assignments/assignment5.html">Assignment 5</a></li>
+                            <li><a href="/Gui1/assignments/assignment6.html">Assignment 6</a></li>
+                            <li><a href="/Gui1/assignments/assignment7.html">Assignment 7</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Gui1/assignments/">All Assignments</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/Gui1/about/">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--Navbar for website navigation. -->
+
+
+<!-- Begin Body -->
+<div class="container">
+    <!--Div for Jumbotron shows some information -->
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Assignment 7 - v2</h1>
+            <p>91.461 GUI Programming</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="well well-sm">
+            <p>Table Rules:</p>
+            <p>Length Y: < 50</p>
+            <p>Length X: < 50</p>
+
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <!--
+                    Multiplication Table:
+                        r = LengthY
+                        c = LengthX
+                        ry = StartY
+                        rx = StartX
+
+                -->
+                <form name="multTable" id="multTable" method="get" action="">
+
+                    <label for="lenY">Length Y:</label>
+                    <input id="lenY"   type="text" value="10" size="6" name="r" /><br>
+
+                    <label for="lenX">Length X:</label>
+                    <input id="lenX"   type="text" value="10" size="6" name="c" /><br>
+
+                    <label for="startY">Start  Y:</label>
+                    <input id="startY"   type="text" value="1" size="6" name="ry" /><br>
+
+                    <label for="startX">Start  X:</label>
+                    <input id="startX"   type="text" value="1" size="6" name="rx" /><br><br>
+
+                    <input type="submit" id="submit" value="Build Table" />
+                    <input type="button" onclick="resetForum()" value="Reset" />
+
+                </form>
+
+            </div>
+            <div class="panel-body">
+                <div id="table"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--Assignment Panel End Div -->
+
+
+
+</html>

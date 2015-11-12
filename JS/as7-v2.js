@@ -1,4 +1,3 @@
-
 /*
  * Found this function online to take the form and call the function to create the table.
  *   The user is OxyDesign
@@ -6,19 +5,10 @@
  *   -http://jsfiddle.net/OxyDesign/kb294v6a/
  *
  * */
-$(document).ready(function(){
-    buildTable();
 
-    $('form').on('submit',function(e){
-        e.preventDefault();
-        buildTable();
-    });
 
+function submit (){
     //Got this from http://jqueryvalidation.org/digits-method
-    jQuery.validator.setDefaults({
-        debug: true,
-        success: buildTable()
-    });
     $( "#multTable" ).validate({
         rules: {
             r: {
@@ -38,8 +28,49 @@ $(document).ready(function(){
                 digits: true
             }
         },
+        messages: {
+            r: {
+                required: "Must have a number greater than or equal to 1",
+                digits: "Must be a number"
+            },
+            c: {
+                required: "Must have a number greater than or equal to 1",
+                digits: "Must be a number"
+            },
+            ry: {
+                required: "Must have a number greater than or equal to 1",
+                digits: "Must be a number"
+            },
+            rx: {
+                required: "Must have a number greater than or equal to 1",
+                digits: "Must be a number"
+            }
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter( element );
+        },
+        submitHandler: function() {
+            console.log("Reached submitHandler")
+            buildTable();
+        }
+
 
     });
+}
+
+
+$(document).ready(function(){
+    //buildTable();
+
+    console.log("Ready function reached");
+    /*$('form').on('submit',function(e){
+        e.preventDefault();
+        buildTable();
+    });
+    */
+    //buildTable();
+    submit();
+
 
 
 
@@ -52,6 +83,7 @@ $(document).ready(function(){
  *
  * */
 function resetForum(){
+    console.log("resetForm function reached");
     document.getElementById("multTable").reset();
     document.getElementById("buildTable").click();
 }
@@ -73,9 +105,11 @@ function resetForum(){
  *
  * */
 function buildTable(){
+    console.log("Reached buildTable");
+    submit();
 
-    document.getElementById("xLengthError").innerHTML = "";
-    document.getElementById("yLengthError").innerHTML = "";
+    //document.getElementById("xLengthError").innerHTML = "";
+    //document.getElementById("yLengthError").innerHTML = "";
     /*
      * Create 4 variables taken from the forum.
      * */
@@ -85,25 +119,26 @@ function buildTable(){
         yStart = parseInt($('input[name=rx]').val());
 
     //Is never reached with jQuery validation being checked
+
     if( yLength > 50 || xLength > 50 || isNaN(xStart) || isNaN(yStart) ){
 
-         /*Used this for errors but didn't like the popup
+        /*Used this for errors but didn't like the popup
          alert("Please Enter Lengths Below 24");
          */
 
         /*
-            These print errors statements next to the form selection that was too large.
-        */
+         These print errors statements next to the form selection that was too large.
+         */
         /*if( xLength > 50 && yLength > 50 ){
-            document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 50";
-            document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 50";
-        }
-        else if( yLength > 50 ){
-            document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 50";
-        }
-        else if( xLength > 50 ){
-            document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 50";
-        }*/
+         document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 50";
+         document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 50";
+         }
+         else if( yLength > 50 ){
+         document.getElementById("yLengthError").innerHTML = "Y Length Too Long Please Choose A Number Under 50";
+         }
+         else if( xLength > 50 ){
+         document.getElementById("xLengthError").innerHTML = "X Length Too Long Please Choose A Number Under 50";
+         }*/
         yLength = 10;
         xLength = 10;
         xStart = 1;
@@ -111,6 +146,7 @@ function buildTable(){
         resetForum();
         return;
     }
+
     /*
      * Use dx and dy to hold values passed in and be able to change them without
      * affecting the original values so these can be reset when needed.
