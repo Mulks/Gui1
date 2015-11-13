@@ -34,11 +34,12 @@ function submit (){
             },
             ry: {
                 required: true,
-                digits: true,
+                number: true,
+
             },
             rx: {
                 required: true,
-                digits: true,
+                number: true
             }
         },
         messages: {
@@ -56,17 +57,13 @@ function submit (){
             },
             ry: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number",
-                min: {
-                    param: 0
-                }
+                number: "Must be a number",
+
             },
             rx: {
                 required: "Must have a number greater than or equal to 1",
-                digits: "Must be a number",
-                min: {
-                    param: 0
-                }
+                number: "Must be a number",
+
             }
         },
         errorPlacement: function(error, element) {
@@ -103,7 +100,7 @@ $(document).ready(function(){
 function resetForum(){
     console.log("resetForm function reached");
     document.getElementById("multTable").reset();
-    submit();
+    buildTable();
 }
 
 
