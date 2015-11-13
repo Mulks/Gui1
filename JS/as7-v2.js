@@ -8,8 +8,28 @@
 
 
 function submit (){
-    //Got this from http://jqueryvalidation.org/digits-method
 
+    /*
+        When submit fucntion is called it will validate the form.
+        I built this using one of the demos from the http://jqueryvalidation.org website
+        and changing it to what I needed by either adding or deleting rules and messages.
+        http://jqueryvalidation.org/files/demo/milk/
+        view-source:http://jqueryvalidation.org/files/demo/milk/
+
+
+        Lengths have:
+            -required
+            -digits used digits because it cannot be negative
+            -min 1
+            -max 50
+
+        Starts have:
+            -required
+            -number used number because these can be negative
+            -min (-1000000)
+            -max 1000000
+
+     */
     $( "#multTable" ).validate({
         rules: {
             r: {
@@ -35,11 +55,23 @@ function submit (){
             ry: {
                 required: true,
                 number: true,
+                min: {
+                    param: -1000000
+                },
+                max: {
+                    param: 1000000
+                }
 
             },
             rx: {
                 required: true,
-                number: true
+                number: true,
+                min: {
+                    param: -1000000
+                },
+                max: {
+                    param: 1000000
+                }
             }
         },
         messages: {
@@ -58,18 +90,26 @@ function submit (){
             ry: {
                 required: "Must have a number greater than or equal to 1",
                 number: "Must be a number",
+                min: "Must be greater than equal to -1000000",
+                max: "Must be less than or equal to 1000000"
 
             },
             rx: {
                 required: "Must have a number greater than or equal to 1",
                 number: "Must be a number",
+                min: "Must be greater than equal to -1000000",
+                max: "Must be less than or equal to 1000000"
 
             }
         },
         errorPlacement: function(error, element) {
+
+            //Places the error next to the element with the error.
             error.insertAfter( element );
         },
         submitHandler: function() {
+
+            //Test to see if this function is reached.
             console.log("Reached submitHandler")
             buildTable();
         }
@@ -78,12 +118,22 @@ function submit (){
     });
 }
 
+/*
+
+
+
+ */
+
 
 $(document).ready(function(){
+
+    //Builds the table initially when page is loaded.
     buildTable();
 
+    //Test to see this is reached when loaded.
     console.log("Ready function reached");
 
+    //Validate the form.
     submit();
 
 
@@ -120,6 +170,8 @@ function resetForum(){
  *
  * */
 function buildTable(){
+
+    //Test to see if this function is reached.
     console.log("Reached buildTable");
     submit();
 
