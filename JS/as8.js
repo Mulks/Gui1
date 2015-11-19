@@ -130,14 +130,19 @@ $(document).ready(function(){
     //Builds the table initially when page is loaded.
     buildTable();
 
+
     //Test to see this is reached when loaded.
     console.log("Ready function reached");
 
     //Validate the form.
     submit();
 
+    console.log("before tab");
+
+    $( "#tabs" ).tabs({ active: 0 });
 
 
+    console.log("after tab");
 
 
 });
