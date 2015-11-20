@@ -1,10 +1,65 @@
+
+
+
+
 /*
- * Found this function online to take the form and call the function to create the table.
- *   The user is OxyDesign
- *   -http://stackoverflow.com/questions/26004342/javascript-multiplication-table
- *   -http://jsfiddle.net/OxyDesign/kb294v6a/
+*   Set up for the dynamic tabs
+*
+*
+* */
+var tabCounter = 1;
+//var tabTitle = $( "#tab_title" );
+//var tabContent = $( "#tab_content" );
+//var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
+var tabs = $("#tabs").tabs();
+
+/*
+ *   Assignment 8 Code
+ *   Found this online - http://stackoverflow.com/questions/14702631/in-jquery-ui-1-9-how-do-you-create-new-tabs-dynamically
+ *      -user msoliman
  *
  * */
+
+
+
+
+function addTab(tabs, tabId, tabLabel, tabContentHtml) {
+
+    console.log("inside addTab. , " + tabId);
+
+    var header = "<li><a href='#" + tabId + "'>" + tabLabel + "</a><span  class='ui-icon ui-icon-close '  role='presentation'>Remove Tab</span></li>";
+    tabs.find(".ui-tabs-nav").append(header);
+    tabs.append("<div id='" + tabId + "'><p>" + tabContentHtml + "</p></div>");
+    tabs.tabs("refresh");
+
+    tabCounter++;
+};
+
+
+/*$( "#tabs").on(  "click", "ui-icon-close", function() {
+    console.log("inside ui close.");
+    var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+    $( "#" + panelId ).remove();
+    tabs.tabs( "refresh" );
+});
+*/
+
+tabs.delegate( "span.ui-icon-close", "click", function() {
+    var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+    $( "#" + panelId ).remove();
+    tabs.tabs( "refresh" );
+});
+
+;
+
+//$('#tabs').click(function () { /* perform action here */ });
+
+/*function removeTab( tabId){
+    console.log("inside remove tab. , " + tabId);
+    $( this ).tabs("disable");
+}
+*/
+
 
 
 function submit (){
@@ -118,17 +173,92 @@ function submit (){
     });
 }
 
-/*
+function sliders(){
+    //http://jsfiddle.net/andrewwhitaker/MD3mX/
+    $("#lenYSlider").slider({
+        range: "min",
+        value: 10,
+        step: 1,
+        min: 1,
+        max: 50,
+        slide: function( event, ui ) {
+            $( "#lenY" ).val( ui.value );
+        }
+    });
+
+
+    $("#lenY").change(function () {
+        var value = this.value;
+        console.log(value);
+        $("#lenYSlider").slider("value", parseInt(value));
+    });
 
 
 
- */
+    $("#lenXSlider").slider({
+        range: "min",
+        value: 10,
+        step: 1,
+        min: 1,
+        max: 50,
+        slide: function( event, ui ) {
+            $( "#lenX" ).val( ui.value );
+        }
+    });
+
+
+    $("#lenX").change(function () {
+        var value = this.value;
+        console.log(value);
+        $("#lenXSlider").slider("value", parseInt(value));
+    });
+
+    $("#startYSlider").slider({
+        range: "min",
+        value: 1,
+        step: 1,
+        min: -1000000,
+        max: 1000000,
+        slide: function( event, ui ) {
+            $( "#startY" ).val( ui.value );
+        }
+    });
+
+
+    $("#startY").change(function () {
+        var value = this.value;
+        console.log(value);
+        $("#startYSlider").slider("value", parseInt(value));
+    });
+
+
+    $("#startXSlider").slider({
+        range: "min",
+        value: 1,
+        step: 1,
+        min: -1000000,
+        max: 1000000,
+        slide: function( event, ui ) {
+            $( "#startX" ).val( ui.value );
+        }
+    });
+
+
+    $("#startX").change(function () {
+        var value = this.value;
+        console.log(value);
+        $("#startXSlider").slider("value", parseInt(value));
+    });
+}
 
 
 $(document).ready(function(){
 
     //Builds the table initially when page is loaded.
-    buildTable();
+    //buildTable();
+
+    sliders();
+
 
 
     //Test to see this is reached when loaded.
@@ -155,7 +285,7 @@ $(document).ready(function(){
 function resetForum(){
     console.log("resetForm function reached");
     document.getElementById("multTable").reset();
-    buildTable();
+    //buildTable();
 }
 
 
@@ -259,6 +389,13 @@ function buildTable(){
         }
         table += '</tbody>';
         table += '</table>';
-        $('#table').html(table);
+
+
+
+
+
+        //$('#table').html(table);
+        addTab($("#tabs"), "tab-" + tabCounter, "Tab " + tabCounter, table);
+
     }
 }
