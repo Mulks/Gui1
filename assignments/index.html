@@ -72,6 +72,7 @@
                             <li><a href="/Gui1/assignments/assignment5.html">Assignment 5</a></li>
                             <li><a href="/Gui1/assignments/assignment6.html">Assignment 6</a></li>
                             <li><a href="/Gui1/assignments/assignment7-v2.html">Assignment 7</a></li>
+                            <li><a href="/Gui1/assignments/assignment8.html">Assignment 8</a></li>
                             <li class="divider"></li>
                             <li><a href="/Gui1/assignments/">All Assignments</a></li>
                         </ul>
@@ -107,7 +108,8 @@
                     <a class="list-group-item green-list-group-item" href="#assignment4">Assignment 4</a>
                     <a class="list-group-item green-list-group-item" href="#assignment5">Assignment 5</a>
                     <a class="list-group-item green-list-group-item" href="#assignment6">Assignment 6</a>
-                    <a class="list-group-item blue-list-group-item" href="#assignment7">Assignment 7</a>
+                    <a class="list-group-item green-list-group-item" href="#assignment7">Assignment 7</a>
+                    <a class="list-group-item blue-list-group-item" href="#assignment8">Assignment 8</a>
                 </div>
 
 
@@ -191,14 +193,28 @@
                         </ul>
                     </div>
                 </div>
-                <div class="panel panel-primary" id="assignment7">
-                    <div class="panel-heading"><a class="panel-active-hw" href="/Gui1/assignments/assignment7-v2.html">Assignment 7</a></div>
+                <div class="panel panel-success" id="assignment7">
+                    <div class="panel-heading"><a class="panel-past-hw" href="/Gui1/assignments/assignment7-v2.html">Assignment 7</a></div>
                     <div class="panel-body">
                         <h3>Creating an Interactive Dynamic Table</h3>
                         <ul>
                             <li>Begin by copying your program for the previous assignment — or at least your main HTML page — to a new file so that you can modify it without destroying your previous work.</li>
                             <li>Modify your page to validate all data entered by the user using the jQuery Validation plugin and prevent the form from being submitted (or the table from being regenerated) if the user’s entry contains an error.  If there is no error, regenerate the table as in the previous assignment.</li>
                             <li>Explore the various jQuery Validation plugin options carefully.  Read the text, study my examples, and search for additional examples online.  Customize the error messages displayed by the plugin so that they make sense in the context of your application.  Customize where the error messages are placed to maintain complete control over how your page looks.</li>
+                            <li>Test your page thoroughly.  Try to anticipate all the errors that a user might make, whether intentional or unintentional.  Make sure that you handle each possibility. </li>
+                            <li>Have a friend run your application and try to “break” it.  Plug any “holes” that your friend finds in your application and/or its validation scheme.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-primary" id="assignment8">
+                    <div class="panel-heading"><a class="panel-active-hw" href="/Gui1/assignments/assignment8.html">Assignment 8</a></div>
+                    <div class="panel-body">
+                        <h3>Using the jQuery UI Slider and Tab Widgets</h3>
+                        <ul>
+                            <li>Begin your development by copying the files for your previous assignment to a new files (or a new directory) so that you can modify them without destroying your previous work.  Do not remove the jQuery Validation plugin code!  This assignment is an extension of the previous one.  Everything that you did in the previous assignment is still useful for this one.</li>
+                            <li>Modify your page to do two things.  These tasks are the crux of this assignment. </li>
+                            <li>Add jQuery UI sliders for each of your text input fields.  Manipulating a slider should change the value in the corresponding text input field dynamically.  That is, moving the slider should instantly change the text input field value.  Likewise, typing into the text input field should change the value indicated by the slider.</li>
+                            <li>The second major modification is to implement a jQuery UI tabbed interface.  Each time you create a new table, display it in a new tab and label that tab with the four parameters used to create it. Thus, you should have a single tab in which you enter parameters, and individual tabs for each table that gets generated.  Think about how you want to implement this on your page, as you may not want to have the tabs in the standard location or format.</li>
                             <li>Test your page thoroughly.  Try to anticipate all the errors that a user might make, whether intentional or unintentional.  Make sure that you handle each possibility. </li>
                             <li>Have a friend run your application and try to “break” it.  Plug any “holes” that your friend finds in your application and/or its validation scheme.</li>
                         </ul>

@@ -1,16 +1,17 @@
-
-
-
-
 /*
-*   Set up for the dynamic tabs
+*   Cody Mulkern
+*   Assignment 8
+*   Cody_Mulkern@student.uml.edu
 *
+*   as8.js
 *
 * */
+
+
+
+//Keep track of tabs for the header and to keep track of how many tabs are active.
 var tabCounter = 1;
-//var tabTitle = $( "#tab_title" );
-//var tabContent = $( "#tab_content" );
-//var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
+var numTabs = 1;
 
 
 /*
@@ -19,7 +20,28 @@ var tabCounter = 1;
  *      -user msoliman
  *
  * */
+function addTab(tabs, tabId, tabLabel, tabContentHtml) {
 
+    console.log("inside addTab. , " + tabId);
+
+    var header = "<li><a href='#" + tabId + "' class='dispensable-tabs'>" + tabLabel + "</a><span  class='ui-icon ui-icon-close '  role='presentation'>Remove Tab</span></li>";
+    tabs.find(".ui-tabs-nav").append(header);
+    tabs.append("<div id='" + tabId + "' ><p>" + tabContentHtml + "</p></div>");
+    tabs.tabs("refresh");
+
+    tabCounter++;
+    numTabs++;
+}
+
+
+
+/*
+*   Found this on the example page on jqueryUI documentation
+*   -https://jqueryui.com/tabs/#manipulation
+*
+*   Did not need all of it just the part so that I could delete tabs using the X's in the corner.
+*
+* */
 $(function() {
 
     var tabs = $( "#tabs" ).tabs();
@@ -31,55 +53,58 @@ $(function() {
             dialog.dialog( "open" );
         });
 
-    // close icon: removing the tab on click
+
+
+
+
+    /*
+    *   Closes the tab when the x is clicked on.
+    * */
     tabs.delegate( "span.ui-icon-close", "click", function() {
         var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
         $( "#" + panelId ).remove();
         tabs.tabs( "refresh" );
+        numTabs--;
     });
 
+
+    /*
+    *   Closes all tabs when Shift + Enter are pressed.
+    *
+    *   Can't figure out how to delete all tabs and leave the main one so i refresh the page
+    *   when the tabs are gone.
+    * */
     tabs.bind( "keyup", function( event ) {
-        if ( event.altKey && event.keyCode === $.ui.keyCode.BACKSPACE ) {
+        if ( event.shiftKey && event.keyCode === $.ui.keyCode.ENTER ) {
+            /*
             var panelId = tabs.find( ".ui-tabs-active" ).remove().attr( "aria-controls" );
             $( "#" + panelId ).remove();
             tabs.tabs( "refresh" );
+            */
+
+            for( var i = 0; i < numTabs; i++){
+                console.log("Remove tab loop: " + i);
+                //if( $( "#tab-" + i ) != null ){
+
+                $( "#tabs" ).tabs({ active: 1 });
+
+
+                var panelId = tabs.find( ".ui-tabs-active" ).remove().attr( "aria-controls" );
+                console.log("panelId = " + panelId);
+                $( "#tab-" + i ).remove();
+
+                //}
+                tabs.tabs( "refresh" );
+            }
+
+            //$( ".dispensable-tabs" ).tabs( "disable" );
+
         }
+        location.reload();
     });
 });
 
 
-function addTab(tabs, tabId, tabLabel, tabContentHtml) {
-
-    console.log("inside addTab. , " + tabId);
-
-    var header = "<li><a href='#" + tabId + "'>" + tabLabel + "</a><span  class='ui-icon ui-icon-close '  role='presentation'>Remove Tab</span></li>";
-    tabs.find(".ui-tabs-nav").append(header);
-    tabs.append("<div id='" + tabId + "'><p>" + tabContentHtml + "</p></div>");
-    tabs.tabs("refresh");
-
-    tabCounter++;
-}
-
-
-/*$( "#tabs").on(  "click", "ui-icon-close", function() {
-    console.log("inside ui close.");
-    var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
-    $( "#" + panelId ).remove();
-    tabs.tabs( "refresh" );
-});
-*/
-
-
-
-
-
-//$('#tabs').click(function () { /* perform action here */ });
-
-/*function removeTab( tabId){
-    console.log("inside remove tab. , " + tabId);
-    $( this ).tabs("disable");
-}
-*/
 
 
 
@@ -194,6 +219,15 @@ function submit (){
     });
 }
 
+
+/*
+*   This allows the sliders to change the input boxes and allows the input boxes
+*   to change the sliders.
+*
+*
+*   Found an example of this on:
+*       -http://jsfiddle.net/andrewwhitaker/MD3mX/
+* */
 function sliders(){
     //http://jsfiddle.net/andrewwhitaker/MD3mX/
     $("#lenYSlider").slider({
@@ -278,6 +312,7 @@ $(document).ready(function(){
     //Builds the table initially when page is loaded.
     //buildTable();
 
+    //Inserts the sliders into the page.
     sliders();
 
 
@@ -289,6 +324,7 @@ $(document).ready(function(){
 
     console.log("before tab");
 
+    //This makes sure that the tab with all the input is active.
     $( "#tabs" ).tabs({ active: 0 });
 
 
