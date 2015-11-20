@@ -11,7 +11,7 @@ var tabCounter = 1;
 //var tabTitle = $( "#tab_title" );
 //var tabContent = $( "#tab_content" );
 //var tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>";
-var tabs = $("#tabs").tabs();
+
 
 /*
  *   Assignment 8 Code
@@ -20,7 +20,32 @@ var tabs = $("#tabs").tabs();
  *
  * */
 
+$(function() {
 
+    var tabs = $( "#tabs" ).tabs();
+
+    // addTab button: just opens the dialog
+    $( "#add_tab" )
+        .button()
+        .click(function() {
+            dialog.dialog( "open" );
+        });
+
+    // close icon: removing the tab on click
+    tabs.delegate( "span.ui-icon-close", "click", function() {
+        var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
+        $( "#" + panelId ).remove();
+        tabs.tabs( "refresh" );
+    });
+
+    tabs.bind( "keyup", function( event ) {
+        if ( event.altKey && event.keyCode === $.ui.keyCode.BACKSPACE ) {
+            var panelId = tabs.find( ".ui-tabs-active" ).remove().attr( "aria-controls" );
+            $( "#" + panelId ).remove();
+            tabs.tabs( "refresh" );
+        }
+    });
+});
 
 
 function addTab(tabs, tabId, tabLabel, tabContentHtml) {
@@ -33,7 +58,7 @@ function addTab(tabs, tabId, tabLabel, tabContentHtml) {
     tabs.tabs("refresh");
 
     tabCounter++;
-};
+}
 
 
 /*$( "#tabs").on(  "click", "ui-icon-close", function() {
@@ -44,13 +69,9 @@ function addTab(tabs, tabId, tabLabel, tabContentHtml) {
 });
 */
 
-tabs.delegate( "span.ui-icon-close", "click", function() {
-    var panelId = $( this ).closest( "li" ).remove().attr( "aria-controls" );
-    $( "#" + panelId ).remove();
-    tabs.tabs( "refresh" );
-});
 
-;
+
+
 
 //$('#tabs').click(function () { /* perform action here */ });
 
@@ -258,7 +279,6 @@ $(document).ready(function(){
     //buildTable();
 
     sliders();
-
 
 
     //Test to see this is reached when loaded.
