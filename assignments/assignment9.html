@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<!-- Cody Mulkern
+   File: assignments/assignment7.html
+	 Cody_Mulkern@student.uml.edu
+	 Computer Science Student UMass Lowell 91.461 GUI Programming I
+	 Date:  11/8/15
+   Updated: 11/11/15 by Cody Mulkern
+   Updated: 11/12/15 by Cody Mulkern
+-->
+<html lang="en">
+
+
+<head>
+    <title>Assignment 7</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap source from http://getbootstrap.com/getting-started/-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+    <!-- My own css overriding bootstrap's css-->
+    <link rel="stylesheet" type="text/css" href="/Gui1/css/table.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
+    <script src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/additional-methods.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/cupertino/jquery-ui.css">
+
+    <!--My javascript for assignment 7 -->
+    <script src="/Gui1/JS/as9.js"></script>
+
+    <style>
+        .scrabbleTile {
+            margin-right: 20px;
+            width:128px;
+            height:128px;
+        }
+
+        #rack {
+            width:1140px;
+            height:240px;
+        }
+
+        #rackDiv {
+            position: relative;
+        }
+
+        #playerRack {
+            position: absolute;
+            bottom: 45px;
+            left: 75px;
+        }
+    </style>
+
+
+</head>
+
+
+<!--Navbar for website navigation. -->
+<!-- +Home
+  +Assignments
+  +->Assignment1
+  +->Assignment2
+  +->Assignment3
+  +->All Assignments
+  +About
+-->
+<!--Got example from  http://getbootstrap.com/examples/navbar/-->
+<nav class="navbar navbar-inverse" >
+    <div class="container-fluid">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Gui1">Mulky</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Gui1">Home</a></li>
+                    <li class="active dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Assignments<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="active"><a href="/Gui1/assignments/assignment1.html">Assignment 1</a></li>
+                            <li><a href="/Gui1/assignments/assignment2.html">Assignment 2</a></li>
+                            <li><a href="/Gui1/assignments/assignment3.html">Assignment 3</a></li>
+                            <li><a href="http://mulks.github.io/Gui1/">Assignment 4</a></li>
+                            <li><a href="/Gui1/assignments/assignment5.html">Assignment 5</a></li>
+                            <li><a href="/Gui1/assignments/assignment6.html">Assignment 6</a></li>
+                            <li><a href="/Gui1/assignments/assignment7-v2.html">Assignment 7</a></li>
+                            <li><a href="/Gui1/assignments/assignment8.html">Assignment 8</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/Gui1/assignments/">All Assignments</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/Gui1/about/">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!--Navbar for website navigation. -->
+
+
+<!-- Begin Body -->
+<div class="container">
+    <!--Div for Jumbotron shows some information -->
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Assignment 9</h1>
+            <p>91.461 GUI Programming</p>
+        </div>
+    </div>
+
+
+    <!--
+        Got Image for the Rack from http://www.amazon.com/Scrabble-Rack-large-scrabble-tiles/dp/B00AG2HWAI
+        Copied it from the google search had to use snipping tool in windows to cut the rack itself out found websites but they all wanted
+        payment or to join.
+
+
+        Tiles are put in the playerRack div right now just to test that they are correctly coming out.
+    -->
+    <div class="container" id="rackDiv">
+        <img id="rack" src="..\pics\scrabble\scrabbleTileRack2.jpg">
+        <div id="playerRack"></div>
+    </div>
+
+
+
+
+
+</div>
+<!--Assignment Panel End Div -->
+
+
+
+</html>
