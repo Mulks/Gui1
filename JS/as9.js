@@ -1,5 +1,13 @@
 /**
- * Created by Cody on 12/2/2015.
+ *  Cody Mulkern
+ *  Cody_mulkern@student.uml.edu
+ *
+ *  as9.js
+ *
+ *  Assignment 9: Implementing some of Scrabble
+ *
+ *  Created by Cody Mulkern December 1, 2015
+ *  Updated by Cody Mulkern December 2, 2015
  */
 
 
@@ -74,13 +82,15 @@ function buildRack(){
     var id;
     var tileClass = "scrabbleTile";
 
+    $('#rackDiv div').empty();
+
     for( var i = 0; rackCount <= STARTING_TILE_MAX; i++){
 
         var randTile = randomTile();
 
         //console.log( "randTile : " + randTile );
 
-        if( ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"] !== 0){
+        if( ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"] !== 0 && tilesLeft()){
 
             playerRack[rackCount] = {"letter" : String.fromCharCode(65 + randTile),"value" : ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "value" ]};
 
@@ -97,16 +107,43 @@ function buildRack(){
             $('#playerRack').prepend($('<img>',{id:id,src:src,class:tileClass}));
             rackCount++;
         }
+        if(tilesLeft() == false ){
+            $('#tileButtonDiv').append("<p>No Tiles Left</p>");
+            $("#newTileButton").prop("disabled",true);
+            return;
+        }
         /*console.log("Random Tile: " + String.fromCharCode(65 + randTile) + " : " + ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "value" ]
          + " : " + ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "original" ]
          + " : " + ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"]);
-         */
+        */
+
+        //printTiles();
     }
+}
+
+function tilesLeft(){
+
+    var tileExists = false;
+    var offSet = 0;
+
+    while( offSet < 27 ){
+
+        //console.log("offset: " + offSet);
+
+        if(ScrabbleTiles[ String.fromCharCode(65 + offSet) ][ "remaining" ] !== 0){
+            tileExists = true;
+        }
+        offSet++;
+    }
+
+    return tileExists;
+
 }
 
 $(document).ready(function(){
 
     buildRack();
+    $(".scrabbleTile" ).draggable();
 
 
 });
