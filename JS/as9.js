@@ -18,6 +18,10 @@
  *  updated by JMH on November 21, 2015 at 10:27 AM
  *  updated by JMH on November 25, 2015 at 10:58 AM to add the blank tile
  *  updated by JMH on November 27, 2015 at 10:22 AM to add original-distribution
+ *
+ *  Got Tiles and ScrabbleTiles array from Professor Heines Website
+ *  @Link to array  https://teaching.cs.uml.edu/~heines/91.461/91.461-2015-16f/461-lecs/lecture26.jsp
+ *  @Link to tiles  https://teaching.cs.uml.edu/~heines/91.461/91.461-2015-16f/461-assn/Scrabble_Tiles.zip
  */
 
 var ScrabbleTiles = [] ;
@@ -56,8 +60,9 @@ var OriginalTableKeys = Object.keys( ScrabbleTiles ).length;
 
 var rackKeys = Object.keys( playerRack ).length;
 
+var playerScore = 0;
 
-
+var tileExists = [false, false, false, false, false, false, false, false, false, false];
 
 
 function printTiles(){
@@ -80,6 +85,7 @@ function buildRack(){
 
     var src;
     var id;
+    var title;
     var tileClass = "scrabbleTile";
 
     $('#rackDiv div').empty();
@@ -102,9 +108,10 @@ function buildRack(){
             console.log("playerRack: Tile: " + ( rackCount ) + " Letter: " + playerRack[rackCount][ "letter" ] + " Value: " + playerRack[rackCount][ "value" ]);
 
             id = "tile" + rackCount;
+            title = playerRack[rackCount][ "letter" ];
             src = "../pics/scrabble/Scrabble_Tile_" + playerRack[rackCount][ "letter" ] + ".jpg";
 
-            $('#playerRack').prepend($('<img>',{id:id,src:src,class:tileClass}));
+            $('#playerRack').prepend($('<img>',{id:id,src:src,class:tileClass,title:title}));
             rackCount++;
         }
         if(tilesLeft() == false ){
@@ -118,7 +125,19 @@ function buildRack(){
         */
 
         //printTiles();
+
+        //$("#" + id).draggable({ snap: ".boardTile" });
+
+        $("#" + id).draggable({ snap: ".boardTile", snapMode: "inner"});
+        //$("#" + id).draggable({ grid: [10,10]});
+        //console.log("Draggable: " + id );
+
+
     }
+
+    //$(".scrabbleTile" ).draggable();
+
+
 }
 
 function tilesLeft(){
@@ -140,10 +159,76 @@ function tilesLeft(){
 
 }
 
+function tileDropped(event, ui){
+
+
+
+    if(tileExists[$(this).attr("id") -1] == false && $(this).attr("title") === 'doubleLetter'){
+        playerScore += (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] * 2 );
+    }
+    else if(tileExists[$(this).attr("id") -1] == false && $(this).attr("title") === 'tripleLetter'){
+        playerScore += (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] * 3 );
+    }
+    else if(tileExists[$(this).attr("id") -1] == false && $(this).attr("title") === 'blank'){
+        playerScore += (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] );
+    }
+    else if(tileExists[$(this).attr("id") -1] == false && $(this).attr("title") === 'doubleWord'){
+
+        playerScore = ((playerScore + ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] ) * 2 );
+    }
+
+    tileExists[$(this).attr("id") -1 ] = true;
+
+    updateScore();
+
+
+    console.log("tile: " + ui.draggable.attr("title") + " dropped");
+    console.log("tile: " + $(this).attr("title") + " caught");
+    console.log("tile: " + $(this).attr("id") + " caught");
+    console.log("TileExists: " + tileExists[$(this).attr("id") -1]);
+}
+
+function tileRemoved(event, ui){
+
+
+
+
+    if(tileExists[$(this).attr("id") -1] == true && $(this).attr("title") === 'doubleLetter'){
+        playerScore -= (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] * 2 );
+    }
+    else if(tileExists[$(this).attr("id") -1] == true && $(this).attr("title") === 'tripleLetter'){
+        playerScore -= (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] * 3 );
+    }
+    else if(tileExists[$(this).attr("id") -1] == true && $(this).attr("title") === 'blank'){
+        playerScore -= (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] );
+    }
+    else if(tileExists[$(this).attr("id") -1] == true && $(this).attr("title") === 'doubleWord'){
+        playerScore = (( playerScore / 2) - (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] ));
+    }
+
+    tileExists[$(this).attr("id") -1 ] = false;
+
+    updateScore();
+
+    console.log("tile: " + ui.draggable.attr("id") + " removed");
+    console.log("tile: " + $(this).attr("title") + " left");
+    console.log("tile: " + $(this).attr("id") + " left");
+    console.log("TileExists: " + tileExists[$(this).attr("id") -1]);
+
+}
+
+function updateScore(){
+
+    $('#scoreSpan').text(playerScore);
+
+}
+
+
 $(document).ready(function(){
 
     buildRack();
-    $(".scrabbleTile" ).draggable();
 
+
+    $(".boardTile").droppable({drop: tileDropped, out: tileRemoved});
 
 });

@@ -12,7 +12,7 @@
 
 
 <head>
-    <title>Assignment 7</title>
+    <title>Assignment 9</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -23,9 +23,9 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
-    <!-- My own css overriding bootstrap's css-->
+    <!-- My own css overriding bootstrap's css
     <link rel="stylesheet" type="text/css" href="/Gui1/css/table.css">
-
+    -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -41,6 +41,12 @@
     <style>
         .scrabbleTile {
             margin-right: 20px;
+            width:128px;
+            height:128px;
+
+        }
+
+        .boardTile {
             width:128px;
             height:128px;
         }
@@ -59,6 +65,13 @@
             bottom: 45px;
             left: 75px;
         }
+
+        img {
+            margin-left:5px;
+            margin-right:5px;
+        }
+
+
     </style>
 
 
@@ -128,8 +141,26 @@
     <div class="container">
         <div class="well well-sm" id="tileButtonDiv">
             <button onclick="buildRack()" id="newTileButton">New Tiles</button>
+            <h3>Score:<span id="scoreSpan">0</span></h3>
         </div>
     </div>
+
+
+    <div class="container" id="boardDiv">
+        <table>
+            <tr>
+                <td><img id="1" class="boardTile" title="doubleLetter" src="..\pics\scrabble\Scrabble_Board_Double_Letter.jpg"></td>
+                <td><img id="2" class="boardTile" title="blank" src="..\pics\scrabble\Scrabble_Board_Blank.jpg"></td>
+                <td><img id="3" class="boardTile" title="blank" src="..\pics\scrabble\Scrabble_Board_Blank.jpg"></td>
+                <td><img id="4" class="boardTile" title="tripleLetter" src="..\pics\scrabble\Scrabble_Board_Triple_Letter.jpg"></td>
+                <td><img id="5" class="boardTile" title="doubleWord" src="..\pics\scrabble\Scrabble_Board_Double_Word.jpg"></td>
+                <td><img id="6" class="boardTile" title="blank" src="..\pics\scrabble\Scrabble_Board_Blank.jpg"></td>
+                <td><img id="7" class="boardTile" title="blank" src="..\pics\scrabble\Scrabble_Board_Blank.jpg"></td>
+            </tr>
+        </table>
+    </div>
+
+
 
 
     <!--
