@@ -8,6 +8,9 @@
  *
  *  Created by Cody Mulkern December 1, 2015
  *  Updated by Cody Mulkern December 2, 2015
+ *  Updated by Cody Mulkern December 3, 2015
+ *  Updated by Cody Mulkern December 8, 2015
+ *  Updated by Cody Mulkern December 9, 2015
  */
 
 
@@ -54,17 +57,23 @@ ScrabbleTiles["Z"] = { "value" : 10, "original" : 1,  "remaining" : 1  } ;
 ScrabbleTiles["["] = { "value" : 0,  "original" : 2,  "remaining" : 2  } ;
 
 
+//Array to hold the tiles in the players hand.
 var playerRack = [];
 
-var OriginalTableKeys = Object.keys( ScrabbleTiles ).length;
 
+var OriginalTableKeys = Object.keys( ScrabbleTiles ).length;
 var rackKeys = Object.keys( playerRack ).length;
 
+//Holds player score starts at 0 every game and is updated through tileDropped() and tileRemoved()
 var playerScore = 0;
 
-var tileExists = [false, false, false, false, false, false, false, false, false, false];
+//Allows for checking if there is already a tile in a block of the gameboard
+var tileExists = [false, false, false, false, false, false, false, false];
 
-
+/*
+* This function is just for debugging to see what is going on in the ScrabbleTiles data structure.
+*   -Prints out the: letter, value, original amount, remaining amount.
+* */
 function printTiles(){
     for ( k = 0 ; k < OriginalTableKeys ; k++ ) {
         console.log(String.fromCharCode(65 + k) + " : " + ScrabbleTiles[ String.fromCharCode(65 + k) ][ "value" ]
@@ -73,10 +82,16 @@ function printTiles(){
     }
 }
 
+/*
+* Picks a random number from 1-27 allowing for a letter to be chosen A <-> blank
+* */
 function randomTile(){
     return Math.floor((Math.random() * 27));
 }
 
+/*
+*
+* */
 function buildRack(){
     var STARTING_TILE_MAX = 7;
     var rackCount = 1;
@@ -119,27 +134,16 @@ function buildRack(){
             $("#newTileButton").prop("disabled",true);
             return;
         }
-        /*console.log("Random Tile: " + String.fromCharCode(65 + randTile) + " : " + ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "value" ]
-         + " : " + ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "original" ]
-         + " : " + ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"]);
-        */
-
-        //printTiles();
-
-        //$("#" + id).draggable({ snap: ".boardTile" });
 
         $("#" + id).draggable({ snap: ".boardTile", snapMode: "inner"});
-        //$("#" + id).draggable({ grid: [10,10]});
-        //console.log("Draggable: " + id );
-
-
     }
-
-    //$(".scrabbleTile" ).draggable();
-
 
 }
 
+/*
+* Checks to see if there is any tiles left in the data structure by looping through and checking the remaining amounts.
+*   -As long as one letter has 1 remaining it will return true.
+* */
 function tilesLeft(){
 
     var tileExists = false;
@@ -159,9 +163,14 @@ function tilesLeft(){
 
 }
 
+/*
+* When a tile is dropped this function will decide what to do when a tile is dropped on gameboard.
+*   -If dropped on blank tile score is incremented by the tile amount. (score + tile )
+*   -If dropped on doubleLetter tile score is incremented by double the tile amount. (score + (tile * 2))
+*   -If dropped on tripleLetter tile score is incremented by three time the tile amount. (score + (tile * 3))
+*   -If dropped on doubleWord tile score is incremeneted by double the the score after the tile amount is added. ((score + tile) * 2)
+* */
 function tileDropped(event, ui){
-
-
 
     if(tileExists[$(this).attr("id") -1] == false && $(this).attr("title") === 'doubleLetter'){
         playerScore += (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] * 2 );
@@ -188,10 +197,14 @@ function tileDropped(event, ui){
     console.log("TileExists: " + tileExists[$(this).attr("id") -1]);
 }
 
+/*
+* When a tile is removed this function will decide what to do when a tile is dropped on gameboard.
+*   -If removed on blank tile score is decremented by the tile amount. (score - tile )
+*   -If removed on doubleLetter tile score is decremented by double the tile amount. (score - (tile * 2))
+*   -If removed on tripleLetter tile score is decremented by three time the tile amount. (score - (tile * 3))
+*   -If removed on doubleWord tile score is divided by two and then the tile amount is subtracted. ((score / 2) - tile)
+* */
 function tileRemoved(event, ui){
-
-
-
 
     if(tileExists[$(this).attr("id") -1] == true && $(this).attr("title") === 'doubleLetter'){
         playerScore -= (ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "value" ] * 2 );
@@ -217,6 +230,9 @@ function tileRemoved(event, ui){
 
 }
 
+/*
+* Updated the span which holds the score.
+* */
 function updateScore(){
 
     $('#scoreSpan').text(playerScore);
