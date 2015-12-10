@@ -90,7 +90,12 @@ function randomTile(){
 }
 
 /*
-*
+*   Builds the player rack with 7 random tiles
+*       -Clears all the gameboard pieces from being occupied.
+*       -Clears the playerRack from all pieces if they exist.
+*       -Loops through choosing random tiles until the playerRack is full with 7 pieces.
+*       -If there are no tiles left in the ScrabbleTiles array the New Tiles button is disabled and only the amount of tiles left are put into
+*       the rack.
 * */
 function buildRack(){
     var STARTING_TILE_MAX = 7;
@@ -103,7 +108,11 @@ function buildRack(){
     var title;
     var tileClass = "scrabbleTile";
 
+    tileExists = [false, false, false, false, false, false, false, false];
+
     $('#rackDiv div').empty();
+
+
 
     for( var i = 0; rackCount <= STARTING_TILE_MAX; i++){
 
@@ -130,14 +139,18 @@ function buildRack(){
             rackCount++;
         }
         if(tilesLeft() == false ){
-            $('#tileButtonDiv').append("<p>No Tiles Left</p>");
+            $('#tileButtonDiv').append("<p id='noTileLeft'>No Tiles Left</p>");
             $("#newTileButton").prop("disabled",true);
+
+            printTiles();
+
             return;
         }
 
-        $("#" + id).draggable({ snap: ".boardTile", snapMode: "inner"});
+        $("#" + id).draggable({ snap: ".boardTile, .trashTile", snapMode: "inner"});
     }
 
+    updateScore();
 }
 
 /*
@@ -169,6 +182,10 @@ function tilesLeft(){
 *   -If dropped on doubleLetter tile score is incremented by double the tile amount. (score + (tile * 2))
 *   -If dropped on tripleLetter tile score is incremented by three time the tile amount. (score + (tile * 3))
 *   -If dropped on doubleWord tile score is incremeneted by double the the score after the tile amount is added. ((score + tile) * 2)
+*
+*   This does not work very well for double and tripleWor  when tiles are placed in different orders the score will become inaccurate,
+*   so I left those out of this version.
+*
 * */
 function tileDropped(event, ui){
 
@@ -203,6 +220,10 @@ function tileDropped(event, ui){
 *   -If removed on doubleLetter tile score is decremented by double the tile amount. (score - (tile * 2))
 *   -If removed on tripleLetter tile score is decremented by three time the tile amount. (score - (tile * 3))
 *   -If removed on doubleWord tile score is divided by two and then the tile amount is subtracted. ((score / 2) - tile)
+*
+*   This does not work very well for double and tripleWor  when tiles are placed in different orders the score will become inaccurate,
+*   so I left those out of this version.
+*
 * */
 function tileRemoved(event, ui){
 
@@ -230,21 +251,128 @@ function tileRemoved(event, ui){
 
 }
 
+
+/*
+* Reset the game board score and hand.
+* */
+function reset(){
+
+    $("#newTileButton").prop("disabled",false);
+    $('#noTileLeft').remove();
+
+    for ( k = 0 ; k < OriginalTableKeys ; k++ ) {
+        ScrabbleTiles[ String.fromCharCode(65 + k) ][ "remaining"] = ScrabbleTiles[ String.fromCharCode(65 + k) ][ "original" ];
+    }
+
+    playerScore = 0;
+    updateScore();
+
+    printTiles();
+
+    buildRack();
+}
+
 /*
 * Updated the span which holds the score.
 * */
 function updateScore(){
 
     $('#scoreSpan').text(playerScore);
+    updateRemainingTiles();
+
+}
+
+function trashDropped( event, ui ){
+
+    /*
+    * Make this return the tile then give a new one
+    *
+    *
+    *
+    * */
+    ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "remaining"]++;
+
+    updateRemainingTiles();
+
+
+
+    var split = ui.draggable.attr("id").split("");
+
+    console.log(split[4]);
+
+
+
+    var randTile = randomTile();
+
+    while(1) {
+        if( ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"] ){
+
+            playerRack[split[4]] = {"letter" : String.fromCharCode(65 + randTile),"value" : ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "value" ]};
+
+            ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"]--;
+
+
+            var id = "tile" + split[4];
+            var title = playerRack[split[4]][ "letter" ];
+            var src = "../pics/scrabble/Scrabble_Tile_" + playerRack[split[4]][ "letter" ] + ".jpg";
+
+            break;
+        }
+    }
+
+
+
+
+    $('#' + ui.draggable.attr("id")).remove();
+
+    $('#playerRack').append($('<img>',{id:id,src:src,class:"scrabbleTile",title:title}));
+
+    $("#" + id).draggable({ snap: ".boardTile, .trashTile", snapMode: "inner"});
+
+    console.log("tile: " + ui.draggable.attr("title") + " dropped");
+    console.log("tile: " + $(this).attr("title") + " caught");
+    console.log("tile: " + $(this).attr("id") + " caught");
 
 }
 
 
+/*
+* This updates the table that shows all the remaining tiles left to be played in the game.
+*
+* */
+function updateRemainingTiles(){
+
+
+    var curTile;
+
+    for ( k = 0 ; k < OriginalTableKeys ; k++ ) {
+
+        curTile = String.fromCharCode(65 + k);
+        if( curTile == "["){
+            curTile = "ZZ";
+        }
+
+        $("#" + curTile).text(ScrabbleTiles[ String.fromCharCode(65 + k)]["remaining"]);
+
+    }
+
+}
+
+
+/*
+* Runs when webpage is loaded
+*   -Rack built.
+*   -Tiles made droppable.
+* */
 $(document).ready(function(){
 
+    //Builds the initial playerRack
     buildRack();
 
+    //Make the gameboard able to accept the players tiles.
+    $(".boardTile").droppable({ drop: tileDropped, out: tileRemoved });
 
-    $(".boardTile").droppable({drop: tileDropped, out: tileRemoved});
+    //Make the trash spot able to accept the players tiles.
+    $(".trashTile").droppable({ drop: trashDropped });
 
 });
