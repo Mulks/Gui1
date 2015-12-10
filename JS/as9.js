@@ -120,6 +120,8 @@ function buildRack(){
 
         //console.log( "randTile : " + randTile );
 
+        //Check if tile has any remaining and check if there is any tiles left in the board
+        //If no tiles left then quit trying to add.
         if( ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"] !== 0 && tilesLeft()){
 
             playerRack[rackCount] = {"letter" : String.fromCharCode(65 + randTile),"value" : ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "value" ]};
@@ -207,11 +209,15 @@ function tileDropped(event, ui){
 
     updateScore();
 
+    /*
+        Used for debugging.
 
     console.log("tile: " + ui.draggable.attr("title") + " dropped");
     console.log("tile: " + $(this).attr("title") + " caught");
     console.log("tile: " + $(this).attr("id") + " caught");
     console.log("TileExists: " + tileExists[$(this).attr("id") -1]);
+    */
+
 }
 
 /*
@@ -244,10 +250,14 @@ function tileRemoved(event, ui){
 
     updateScore();
 
+    /*
+        Used for debugging.
+
     console.log("tile: " + ui.draggable.attr("id") + " removed");
     console.log("tile: " + $(this).attr("title") + " left");
     console.log("tile: " + $(this).attr("id") + " left");
     console.log("TileExists: " + tileExists[$(this).attr("id") -1]);
+    */
 
 }
 
@@ -282,30 +292,33 @@ function updateScore(){
 
 }
 
+/*
+* This function allows players to drop a tile they do not want in the trash and put it back in the pile.
+* Also this gives them a new random tile out of the pile.
+* */
 function trashDropped( event, ui ){
 
-    /*
-    * Make this return the tile then give a new one
-    *
-    *
-    *
-    * */
+
+    //Add the tile back to the pile after then delete it.
     ScrabbleTiles[ String.fromCharCode(ui.draggable.attr("title").charCodeAt(0)) ][ "remaining"]++;
 
-    updateRemainingTiles();
-
-
-
+    //Split the id of the tile to get the position of the rack the tile was in.
     var split = ui.draggable.attr("id").split("");
 
-    console.log(split[4]);
+    //Debugging
+    //console.log(split[4]);
 
 
-
-    var randTile = randomTile();
+    var randTile;
 
     while(1) {
+
+        randTile = randomTile();
+
+        //Check to see if the tile has any remaining so that it can be put into play.
         if( ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "remaining"] ){
+
+
 
             playerRack[split[4]] = {"letter" : String.fromCharCode(65 + randTile),"value" : ScrabbleTiles[ String.fromCharCode(65 + randTile) ][ "value" ]};
 
@@ -322,16 +335,25 @@ function trashDropped( event, ui ){
 
 
 
-
+    //Remove the old tile dropped in the trash.
     $('#' + ui.draggable.attr("id")).remove();
 
+    //Append new tile at the end of the rack.
     $('#playerRack').append($('<img>',{id:id,src:src,class:"scrabbleTile",title:title}));
 
+    //Make the new tile draggable.
     $("#" + id).draggable({ snap: ".boardTile, .trashTile", snapMode: "inner"});
+
+
+    /*
+        Used for debugging.
 
     console.log("tile: " + ui.draggable.attr("title") + " dropped");
     console.log("tile: " + $(this).attr("title") + " caught");
     console.log("tile: " + $(this).attr("id") + " caught");
+    */
+
+    updateRemainingTiles();
 
 }
 
@@ -348,6 +370,7 @@ function updateRemainingTiles(){
     for ( k = 0 ; k < OriginalTableKeys ; k++ ) {
 
         curTile = String.fromCharCode(65 + k);
+        //Had to use this because apparently jQuery cant take an ID that starts like #[ only #a-z
         if( curTile == "["){
             curTile = "ZZ";
         }
